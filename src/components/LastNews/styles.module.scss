@@ -1,0 +1,95 @@
+.container {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+
+  margin: 30px 0px;
+
+  cursor: pointer;
+
+  button {
+    background-color: var(--main);
+    height: 30px;
+    width: 110px;
+    border: none;
+    border-radius: 3px;
+    color: #181818;
+    font-weight: 700;
+  }
+}
+
+.relativeContainer {
+  position: relative;
+  margin: 0px 15px;
+}
+
+.topItem {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  padding: 15px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.othersImgContainer {
+  width: 320px;
+  height: 180px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    filter: brightness(0.75);
+  }
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 25px;
+  background-color: var(--main);
+  color: #181818;
+  font-weight: 700;
+  border-radius: 3px;
+}
+
+.title {
+  font-weight: 700;
+  margin-bottom: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 600px) {
+  .textContainer {
+    font-size: 140%;
+  }
+
+  .tag {
+    width: 125px !important;
+    height: 35px !important;
+    font-size: 1.5rem !important;
+  }
+}

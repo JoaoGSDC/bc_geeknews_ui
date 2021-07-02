@@ -1,0 +1,44 @@
+.container {
+  right: 0;
+  top: 50px;
+  position: fixed;
+
+  width: 350px;
+  height: 100%;
+
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main);
+  padding: 30px;
+
+  transition: 0.2s;
+
+  box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
+
+  h2 {
+    margin-top: 30px;
+  }
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid #181818;
+  border-radius: 500px;
+  height: 150px;
+  width: 150px;
+}
+
+.buttons {
+  border-top: 2px solid #088829;
+  padding-top: 20px;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

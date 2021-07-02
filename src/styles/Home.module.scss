@@ -1,0 +1,27 @@
+.container {
+  margin: 0px 20px;
+  margin-top: 30;
+  display: block;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  color: var(--white);
+  margin-left: 20px;
+  border-bottom: 3px solid var(--main);
+  width: 150px;
+}
+
+.flex {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    display: none;
+  }
+}
