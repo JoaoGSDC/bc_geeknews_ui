@@ -3,14 +3,19 @@ import Link from 'next/link';
 
 import styles from './styles.module.scss';
 import Player from '../Player';
+import { useRouter } from 'next/router';
 
 export default function Header() {
+  const router = useRouter();
   const [mouseOverNoticias, setMouseOverNoticias] = useState<boolean>(false);
   const [playerClick, setPlayerClick] = useState<boolean>(false);
 
   return (
     <>
-      <header className={styles.container}>
+      <header
+        className={styles.container}
+        style={{ display: ['/login', '/dashboard'].includes(router.asPath) ? 'none' : 'flex' }}
+      >
         <Link href="/">
           <div className={styles.flex}>
             <img src="/logo_bycross.png" alt="ByCross" />

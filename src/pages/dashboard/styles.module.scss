@@ -1,0 +1,136 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
+  position: absolute;
+  margin: 50px;
+
+  .field {
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    padding: 0px 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+
+  input {
+    @extend .field;
+  }
+
+  select {
+    @extend .field;
+  }
+
+  textarea {
+    font-size: 18px;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    resize: none;
+    flex: 1;
+    border-radius: 5px;
+  }
+
+  .fieldImage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    svg {
+      margin-left: 10px;
+      margin-right: 10px;
+      color: var(--main);
+    }
+  }
+
+  .buttonsContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    margin-top: 20px;
+
+    .primary {
+      height: 45px;
+      width: 100%;
+      font-size: 16px;
+      background-color: var(--main);
+      border: 1px solid var(--complement-main);
+    }
+
+    .secondary {
+      height: 45px;
+      width: 100%;
+      font-size: 16px;
+      color: var(--main);
+      border: 1px solid var(--main);
+      background-color: transparent;
+      margin-right: 30px;
+    }
+  }
+
+  h2 {
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .selectFieldsContainer {
+    display: flex;
+    width: 100%;
+  }
+
+  .containerFields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  table {
+    width: 100%;
+    color: var(--white);
+    font-size: 18px;
+
+    thead {
+      tr {
+        th {
+          border-left: 1px solid var(--white);
+          padding: 10px 10px;
+        }
+      }
+    }
+
+    tbody {
+      td {
+        border-left: 1px solid var(--white);
+        padding: 10px 15px;
+      }
+    }
+  }
+}
+
+.optionsContainer {
+  position: absolute;
+  display: flex;
+  width: 100px;
+  justify-content: space-between;
+  align-items: center;
+  top: 30px;
+  left: 60px;
+
+  button {
+    border-radius: 100px;
+    padding: 5px;
+    background-color: var(--main);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

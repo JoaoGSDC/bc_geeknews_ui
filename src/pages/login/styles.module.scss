@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  left: 30%;
+  top: 20%;
+}
+
+.cardModel {
+  height: 400px;
+  width: 600px;
+
+  padding: 10px 60px;
+  background-color: var(--white);
+  border-radius: 3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .fieldsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    input {
+      height: 45px;
+      width: 100%;
+      font-size: 16px;
+      background-color: var(--white);
+      padding: 0px 10px;
+      border: 1px solid var(--gray-500);
+      border-radius: 3px;
+      margin-bottom: 25px;
+    }
+
+    span {
+      color: var(--background) !important;
+    }
+  }
+
+  button {
+    height: 45px;
+    width: 100%;
+    display: flex;
+    background-color: var(--main);
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    border: 1px solid var(--complement-main);
+  }
+
+  img {
+    width: 200px;
+  }
+}
