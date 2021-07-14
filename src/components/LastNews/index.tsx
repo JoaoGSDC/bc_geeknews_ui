@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import styles from './styles.module.scss';
 
@@ -14,7 +15,7 @@ export default function LastNews({ notice }: any) {
             </div>
 
             <div className={styles.othersImgContainer}>
-              <img src={notice.image} alt="" />
+              <Image src={notice.image} alt="" />
             </div>
           </div>
 

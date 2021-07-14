@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import styles from './styles.module.scss';
 
@@ -15,7 +16,7 @@ export default function TopHeader({ tops }: any) {
             </div>
 
             <div className={styles.topOneImgContainer}>
-              <img src={tops[0]?.image} alt="" />
+              <Image src={tops[0]?.image} alt="" />
             </div>
           </div>
         </Link>
@@ -29,7 +30,7 @@ export default function TopHeader({ tops }: any) {
               </div>
 
               <div className={styles.othersImgContainer}>
-                <img src={tops[1]?.image} alt="" />
+                <Image src={tops[1]?.image} alt="" />
               </div>
             </div>
           </Link>
@@ -42,7 +43,7 @@ export default function TopHeader({ tops }: any) {
               </div>
 
               <div className={styles.othersImgContainer}>
-                <img src={tops[2]?.image} alt="" />
+                <Image src={tops[2]?.image} alt="" />
               </div>
             </div>
           </Link>

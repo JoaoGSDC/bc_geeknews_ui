@@ -170,7 +170,7 @@ export default function Dashboard({ news }: any) {
             <span>Imagem</span>
             <div className={styles.fieldImage}>
               <input placeholder="Capa" onChange={(event: any) => setCover(event.target.value)} />
-              <a href="https://joao-gabriel22354.imgbb.com/" target="_blank">
+              <a href="https://joao-gabriel22354.imgbb.com/">
                 <FaDownload size={30} />
               </a>
             </div>
@@ -211,7 +211,7 @@ export default function Dashboard({ news }: any) {
             <span>Usuário</span>
             <select placeholder="Usuário" onChange={(event: any) => setUser(event.target.value)}>
               <option style={{ display: 'none' }} value="null"></option>
-              <option value={`João "Fanton Lord" Gabriel`}>João "Fanton Lord" Gabriel</option>
+              <option value={`João "Fanton Lord" Gabriel`}>João &quot;Fanton Lord&quot; Gabriel</option>
               <option value="Redação">Redação</option>
             </select>
           </div>

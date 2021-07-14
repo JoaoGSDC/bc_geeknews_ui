@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import styles from './styles.module.scss';
 import Player from '../Player';
 import { useRouter } from 'next/router';
+
+import logo from '../../../public/logo_bycross.png';
 
 export default function Header() {
   const router = useRouter();
@@ -18,7 +21,7 @@ export default function Header() {
       >
         <Link href="/">
           <div className={styles.flex}>
-            <img src="/logo_bycross.png" alt="ByCross" />
+            <Image src={logo} alt="ByCross" />
           </div>
         </Link>
 

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
+import Image from 'next/image';
+
+import logo from '../../../public/logo_bycross.png';
 
 export default function Login() {
   const router = useRouter();
@@ -21,7 +24,7 @@ export default function Login() {
     <>
       <div className={styles.container}>
         <div className={styles.cardModel}>
-          <img src="/logo_bycross.png" alt="ByCross" />
+          <Image src={logo} alt="ByCross" />
 
           <div className={styles.fieldsContainer}>
             <span>Usuário</span>

@@ -4,6 +4,7 @@ import { FaRegPlayCircle } from 'react-icons/fa';
 import MoreRead from '../../components/MoreRead';
 import TopHeader from '../../components/TopHeader';
 import { api } from '../../services/api';
+import Image from 'next/image';
 
 import styles from './styles.module.scss';
 
@@ -16,7 +17,7 @@ type Podcast = {
   topmatter: number;
   views: number;
   datepublication: Date;
-  image: string;
+  image: any;
   duration: number;
   game: string;
 };
@@ -40,7 +41,7 @@ export default function Podcast({ podcasts }: PodcastProps) {
               <FaRegPlayCircle />
             </div>
             <h2>{podcasts[0].title}</h2>
-            <img src={podcasts[0].image} alt="" />
+            <Image src={podcasts[0].image} alt="image" />
           </div>
         </>
       </div>

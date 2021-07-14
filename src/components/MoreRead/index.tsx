@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import styles from './styles.module.scss';
 
@@ -12,7 +13,7 @@ export default function MoreRead({ moreRead }: any) {
         </div>
 
         <div className={styles.othersImgContainer}>
-          <img src={moreRead?.image} alt="" />
+          <Image src={moreRead?.image} alt="" />
         </div>
       </div>
     </>

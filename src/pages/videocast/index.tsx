@@ -29,7 +29,7 @@ export default function Videocast({ videocasts }: VideocastProps) {
     <>
       <div className={styles.container}>
         {videocasts.map((notice: any) => (
-          <MoreRead read={notice} />
+          <MoreRead key={notice.id} read={notice} />
         ))}
       </div>
     </>

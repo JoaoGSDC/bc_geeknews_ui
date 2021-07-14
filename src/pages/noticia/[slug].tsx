@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import { api } from '../../services/api';
 import { convertDateWriteMode } from '../../utils/convertDateWriteMode';
+import Image from 'next/image';
 
 import styles from './styles.module.scss';
 
@@ -18,7 +19,7 @@ export default function Matter({ news }: any) {
         <h1>{title}</h1>
         <h3>{subtitle}</h3>
         <span>{datepublication}</span>
-        <img src={image} alt="" />
+        <Image src={image} alt="" />
         <div dangerouslySetInnerHTML={createMatter()} />
       </div>
     </>
