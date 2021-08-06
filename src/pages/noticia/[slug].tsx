@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     slugArray[maxIndex - 1]
   }-${slugArray[maxIndex]}`;
 
-  const { data } = await api.get(`/news/${id}`);
+  const { data } = await api.get('/api/news/findOne', { data: { _id: id } });
 
   return {
     props: {

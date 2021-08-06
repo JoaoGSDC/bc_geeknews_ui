@@ -37,12 +37,7 @@ export default function Videocast({ videocasts }: VideocastProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await api.get(`/videocasts`, {
-    params: {
-      _sort: 'datepublication',
-      _order: 'desc',
-    },
-  });
+  const { data } = await api.get('/api/news/findVideocasts');
 
   return {
     props: {

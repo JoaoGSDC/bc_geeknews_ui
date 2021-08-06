@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import LastNews from '../components/LastNews';
 import MoreRead from '../components/MoreRead';
@@ -32,27 +33,9 @@ export default function Home({ news, tops, moreRead }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const respNews = await api.get(`/news`, {
-    params: {
-      _limit: 10,
-      _sort: 'datepublication',
-      _order: 'desc',
-    },
-  });
-
-  const respTop = await api.get(`/news/top`, {
-    params: {
-      _sort: 'datepublication',
-      _order: 'desc',
-    },
-  });
-
-  const respMore = await api.get(`/news/more`, {
-    params: {
-      _sort: 'datepublication',
-      _order: 'desc',
-    },
-  });
+  const respNews = await api.get('/api/news/findAll');
+  const respTop = await api.get('/api/news/findTop');
+  const respMore = await api.get('/api/news/findMostRead');
 
   return {
     props: {

@@ -50,12 +50,7 @@ export default function Podcast({ podcasts }: PodcastProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await api.get(`/podcasts`, {
-    params: {
-      _sort: 'datepublication',
-      _order: 'desc',
-    },
-  });
+  const { data } = await api.get('/api/news/findPodcasts');
 
   return {
     props: {

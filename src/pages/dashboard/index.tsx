@@ -36,7 +36,7 @@ export default function Dashboard({ news }: any) {
 
     if (isUpdate) {
       await api
-        .put('/news', {
+        .put('/api/news/update', {
           title,
           subtitle: subTitle,
           image: cover,
@@ -49,11 +49,16 @@ export default function Dashboard({ news }: any) {
           window.alert('Atualizado com sucesso!');
           cancel();
         })
-        .catch((error: any) => console.log(error));
+        .catch((error: any) => {
+          console.log(error);
+          window.alert('Erro ao salvar!');
+        });
+
+      return;
     }
 
     await api
-      .post('/news', {
+      .post('/api/news/create', {
         title,
         subtitle: subTitle,
         image: cover,
@@ -66,7 +71,10 @@ export default function Dashboard({ news }: any) {
         window.alert('Salvo com sucesso!');
         cancel();
       })
-      .catch((error: any) => console.log(error));
+      .catch((error: any) => {
+        console.log(error);
+        window.alert('Erro ao salvar!');
+      });
   }
 
   function setUpdateItems(matter: INewsDTO) {
@@ -88,7 +96,7 @@ export default function Dashboard({ news }: any) {
     }
 
     await api
-      .delete('/news', { headers: { id: matterId } })
+      .delete('/api/news/remove', { headers: { id: matterId } })
       .then((res: any) => {
         window.alert('Deletado com sucesso!');
       })
@@ -130,103 +138,105 @@ export default function Dashboard({ news }: any) {
         </button>
       </div>
 
-      <div className={styles.container} style={{ display: isTable ? 'table' : 'none' }}>
-        <h2 style={{ textAlign: 'center' }}>Matérias publicadas</h2>
+      {isTable ? (
+        <div className={styles.container}>
+          <h2 style={{ textAlign: 'center' }}>Matérias publicadas</h2>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Matéria</th>
-              <th>Data</th>
-              <th>Usuário</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
+          <table>
+            <thead>
+              <tr>
+                <th>Matéria</th>
+                <th>Data</th>
+                <th>Usuário</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
 
-          {news.map((matter: INewsDTO) => {
-            <tbody>
-              <td>{matter.title}</td>
-              <td>{matter.datepublication}</td>
-              <td>{matter.username}</td>
-              <td>
-                <FaPen size={15} onClick={() => setUpdateItems(matter)} />
-                <FaTrash size={15} onClick={() => deleteMatter(matter.id)} />
-              </td>
-            </tbody>;
-          })}
-        </table>
-      </div>
+            {news.map((matter: INewsDTO) => {
+              <tbody>
+                <td>{matter.title}</td>
+                <td>{matter.datepublication}</td>
+                <td>{matter.username}</td>
+                <td>
+                  <FaPen size={15} onClick={() => setUpdateItems(matter)} />
+                  <FaTrash size={15} onClick={() => deleteMatter(matter.id)} />
+                </td>
+              </tbody>;
+            })}
+          </table>
+        </div>
+      ) : (
+        <div className={styles.container}>
+          <h2>Adicionar nova matéria</h2>
 
-      <div className={styles.container} style={{ display: !isTable ? 'flex' : 'none' }}>
-        <h2>Adicionar nova matéria</h2>
+          <div className={styles.selectFieldsContainer}>
+            <div className={styles.containerFields}>
+              <span>Título</span>
+              <input placeholder="Título" onChange={(event: any) => setTitle(event.target.value)} />
+            </div>
 
-        <div className={styles.selectFieldsContainer}>
-          <div className={styles.containerFields}>
-            <span>Título</span>
-            <input placeholder="Título" onChange={(event: any) => setTitle(event.target.value)} />
-          </div>
-
-          <div className={styles.containerFields}>
-            <span>Imagem</span>
-            <div className={styles.fieldImage}>
-              <input placeholder="Capa" onChange={(event: any) => setCover(event.target.value)} />
-              <a href="https://joao-gabriel22354.imgbb.com/">
-                <FaDownload size={30} />
-              </a>
+            <div className={styles.containerFields}>
+              <span>Imagem</span>
+              <div className={styles.fieldImage}>
+                <input placeholder="Capa" onChange={(event: any) => setCover(event.target.value)} />
+                <a target="_blank" href="https://bycross-software.imgbb.com/" rel="noopener noreferrer">
+                  <FaDownload size={30} />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className={styles.containerFields}>
-          <span>Sub Título</span>
-          <input placeholder="Sub Título" onChange={(event: any) => setSubTitle(event.target.value)} />
-        </div>
-
-        <span>Matéria</span>
-        <textarea placeholder="Texto" onChange={(event: any) => setText(event.target.value)} />
-
-        <div className={styles.selectFieldsContainer}>
-          <div className={styles.containerFields}>
-            <span>Categoria</span>
-            <select placeholder="Tag" onChange={(event: any) => setTag(event.target.value)}>
-              <option style={{ display: 'none' }} value="null"></option>
-              <option value="Nerd">Nerd</option>
-              <option value="eSports">eSports</option>
-              <option value="Games">Games</option>
-            </select>
-          </div>
 
           <div className={styles.containerFields}>
-            <span>Game</span>
-            <select placeholder="Game" onChange={(event: any) => setGame(event.target.value)}>
-              <option style={{ display: 'none' }} value="null"></option>
-              <option value="LOL">League of Legends</option>
-              <option value="FF">Free Fire</option>
-              <option value="VAVA">Valorant</option>
-              <option value="CSGO">Counter Strike: Global Offensive</option>
-            </select>
+            <span>Sub Título</span>
+            <input placeholder="Sub Título" onChange={(event: any) => setSubTitle(event.target.value)} />
           </div>
 
-          <div className={styles.containerFields}>
-            <span>Usuário</span>
-            <select placeholder="Usuário" onChange={(event: any) => setUser(event.target.value)}>
-              <option style={{ display: 'none' }} value="null"></option>
-              <option value={`João "Fanton Lord" Gabriel`}>João &quot;Fanton Lord&quot; Gabriel</option>
-              <option value="Redação">Redação</option>
-            </select>
+          <span>Matéria</span>
+          <textarea placeholder="Texto" onChange={(event: any) => setText(event.target.value)} />
+
+          <div className={styles.selectFieldsContainer}>
+            <div className={styles.containerFields}>
+              <span>Categoria</span>
+              <select placeholder="Tag" onChange={(event: any) => setTag(event.target.value)}>
+                <option style={{ display: 'none' }} value="null"></option>
+                <option value="Nerd">Nerd</option>
+                <option value="eSports">eSports</option>
+                <option value="Games">Games</option>
+              </select>
+            </div>
+
+            <div className={styles.containerFields}>
+              <span>Game</span>
+              <select placeholder="Game" onChange={(event: any) => setGame(event.target.value)}>
+                <option style={{ display: 'none' }} value="null"></option>
+                <option value="LOL">League of Legends</option>
+                <option value="FF">Free Fire</option>
+                <option value="VAVA">Valorant</option>
+                <option value="CSGO">Counter Strike: Global Offensive</option>
+              </select>
+            </div>
+
+            <div className={styles.containerFields}>
+              <span>Usuário</span>
+              <select placeholder="Usuário" onChange={(event: any) => setUser(event.target.value)}>
+                <option style={{ display: 'none' }} value="null"></option>
+                <option value={`João "Fanton Lord" Gabriel`}>João &quot;Fanton Lord&quot; Gabriel</option>
+                <option value="Redação">Redação</option>
+              </select>
+            </div>
+          </div>
+
+          <div className={styles.buttonsContainer}>
+            <button className={styles.primary} type="button" onClick={() => onClickSave()}>
+              Salvar
+            </button>
+
+            <button className={styles.secondary} type="button" onClick={() => cancel()}>
+              Cancelar
+            </button>
           </div>
         </div>
-
-        <div className={styles.buttonsContainer}>
-          <button className={styles.primary} type="button" onClick={() => onClickSave()}>
-            Salvar
-          </button>
-
-          <button className={styles.secondary} type="button" onClick={() => cancel()}>
-            Cancelar
-          </button>
-        </div>
-      </div>
+      )}
     </>
   );
 }
@@ -240,14 +250,21 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
   });
 
+  console.log(data);
+
+  /* let news: any[] = [];
+  data.forEach((values: any) => {
+    news.push({
+      id: values.id || '',
+      title: values.title || '',
+      datepublication: convertDateWriteMode(new Date(values.datepublication)) || '',
+      username: values.username || '',
+    });
+  }); */
+
   return {
     props: {
-      news: {
-        id: data[0].id,
-        title: data[0].title,
-        datepublication: convertDateWriteMode(new Date(data[0].datepublication)),
-        username: data[0].username,
-      },
+      news: data || [],
     },
   };
 };
