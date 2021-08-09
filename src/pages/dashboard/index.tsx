@@ -242,15 +242,7 @@ export default function Dashboard({ news }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await api.get(`/news`, {
-    params: {
-      _limit: 10,
-      _sort: 'datepublication',
-      _order: 'desc',
-    },
-  });
-
-  console.log(data);
+  const { data } = await api.get('/api/news/findAll');
 
   /* let news: any[] = [];
   data.forEach((values: any) => {
