@@ -19,7 +19,7 @@ export default function Header() {
         className={styles.container}
         style={{ display: ['/login', '/dashboard'].includes(router.asPath) ? 'none' : 'flex' }}
       >
-        <Link href="/">
+        <Link href="/" passHref={true}>
           <div className={styles.flex}>
             <Image src={logo} alt="ByCross" />
           </div>
@@ -49,7 +49,7 @@ export default function Header() {
           {/* <Link href="/videocast">
             <span>VideoCast</span>
           </Link> */}
-          <Link href="/podcast">
+          <Link href="/podcast" passHref={true}>
             <span>Podcast</span>
           </Link>
           <span className={styles.player} onClick={() => setPlayerClick(!playerClick)}>

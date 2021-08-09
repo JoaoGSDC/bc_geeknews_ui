@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 export default function LastNews({ notice }: any) {
   return (
     <>
-      <Link href={`/noticia/${notice.title?.split(' ').join('-')}-${notice.id}`}>
+      <Link href={`/noticia/${notice.title?.split(' ').join('-')}-${notice.id}`} passHref={true}>
         <div className={styles.container}>
           <div className={styles.relativeContainer}>
             <div className={styles.topItem}>

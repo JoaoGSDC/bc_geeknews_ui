@@ -8,7 +8,7 @@ export default function TopHeader({ tops }: any) {
   return (
     <>
       <div className={styles.container}>
-        <Link href={`/noticia/${tops[0]?.title?.split(' ').join('-')}-${tops[0]?.id}`}>
+        <Link href={`/noticia/${tops[0]?.title?.split(' ').join('-')}-${tops[0]?.id}`} passHref={true}>
           <div className={styles.relativeContainer}>
             <div className={styles.topItem}>
               <div className={styles.tag}>{tops[0]?.category}</div>
@@ -22,7 +22,7 @@ export default function TopHeader({ tops }: any) {
         </Link>
 
         <div className={styles.mobileOthersContainer}>
-          <Link href={`/noticia/${tops[1]?.title?.split(' ').join('-')}-${tops[1]?.id}`}>
+          <Link href={`/noticia/${tops[1]?.title?.split(' ').join('-')}-${tops[1]?.id}`} passHref={true}>
             <div className={styles.relativeContainer}>
               <div className={styles.topItem}>
                 <div className={styles.tag}>{tops[1]?.category}</div>
@@ -35,7 +35,7 @@ export default function TopHeader({ tops }: any) {
             </div>
           </Link>
 
-          <Link href={`/noticia/${tops[2]?.title?.split(' ').join('-')}-${tops[2]?.id}`}>
+          <Link href={`/noticia/${tops[2]?.title?.split(' ').join('-')}-${tops[2]?.id}`} passHref={true}>
             <div className={styles.relativeContainer}>
               <div className={styles.topItem}>
                 <div className={styles.tag}>{tops[2]?.category}</div>
