@@ -152,7 +152,7 @@ export default function Dashboard({ news }: any) {
               </tr>
             </thead>
 
-            {/* {news.map((matter: INewsDTO) => {
+            {news.map((matter: INewsDTO) => {
               <tbody>
                 <td>{matter.title}</td>
                 <td>{matter.datepublication}</td>
@@ -162,7 +162,7 @@ export default function Dashboard({ news }: any) {
                   <FaTrash size={15} onClick={() => deleteMatter(matter.id)} />
                 </td>
               </tbody>;
-            })} */}
+            })}
           </table>
         </div>
       ) : (
@@ -242,9 +242,9 @@ export default function Dashboard({ news }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  /* const { data } = await api.get('/api/news/findAll'); */
+  const { data } = await api.get('/api/news/findAll');
 
-  /* let news: any[] = [];
+  let news: any[] = [];
   data.forEach((values: any) => {
     news.push({
       id: values.id || '',
@@ -252,7 +252,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       datepublication: convertDateWriteMode(new Date(values.datepublication)) || '',
       username: values.username || '',
     });
-  }); */
+  });
 
   return {
     props: {
