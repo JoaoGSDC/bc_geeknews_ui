@@ -66,6 +66,9 @@ export default function Dashboard({ news }: any) {
         category: tag,
         game,
         username: user,
+        topmatter: 3,
+        datepublication: new Date(),
+        views: 0,
       })
       .then((res: any) => {
         window.alert('Salvo com sucesso!');
@@ -139,32 +142,35 @@ export default function Dashboard({ news }: any) {
       </div>
 
       {isTable ? (
-        <div className={styles.container}>
-          <h2 style={{ textAlign: 'center' }}>Matérias publicadas</h2>
+        <>
+          <div className={styles.container}>
+            <h2 style={{ textAlign: 'center' }}>Matérias publicadas</h2>
 
-          <table>
-            <thead>
-              <tr>
-                <th>Matéria</th>
-                <th>Data</th>
-                <th>Usuário</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
+            <table>
+              <thead>
+                <tr>
+                  <th>Matéria</th>
+                  <th>Data</th>
+                  <th>Usuário</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
 
-            {news.map((matter: INewsDTO) => {
-              <tbody>
-                <td>{matter.title}</td>
-                <td>{matter.datepublication}</td>
-                <td>{matter.username}</td>
-                <td>
-                  <FaPen size={15} onClick={() => setUpdateItems(matter)} />
-                  <FaTrash size={15} onClick={() => deleteMatter(matter.id)} />
-                </td>
-              </tbody>;
-            })}
-          </table>
-        </div>
+              {news.map((matter: INewsDTO) => {
+                console.log(matter);
+                <tbody>
+                  <td>{matter.title}</td>
+                  <td>{matter.datepublication}</td>
+                  <td>{matter.username}</td>
+                  <td>
+                    <FaPen size={15} onClick={() => setUpdateItems(matter)} />
+                    <FaTrash size={15} onClick={() => deleteMatter(matter.id)} />
+                  </td>
+                </tbody>;
+              })}
+            </table>
+          </div>
+        </>
       ) : (
         <div className={styles.container}>
           <h2>Adicionar nova matéria</h2>
@@ -247,16 +253,18 @@ export const getServerSideProps: GetServerSideProps = async () => {
   let news: any[] = [];
   data.forEach((values: any) => {
     news.push({
-      id: values.id || '',
+      id: values._id || '',
       title: values.title || '',
       datepublication: convertDateWriteMode(new Date(values.datepublication)) || '',
       username: values.username || '',
     });
   });
 
+  /* console.log(news); */
+
   return {
     props: {
-      news: [],
+      news,
     },
   };
 };

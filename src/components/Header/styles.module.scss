@@ -14,6 +14,8 @@
 
   z-index: 10;
 
+  box-shadow: 0px 15px 10px rgb(0 0 0 / 50%);
+
   span {
     height: 100%;
     color: var(--gray-100);
@@ -63,16 +65,46 @@
   font-weight: 700;
 }
 
+.menu {
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  height: 100%;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  .btnMenu {
+    background-color: transparent;
+    border: none;
+    height: 40px;
+    width: 40px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .container {
     justify-content: center !important;
     padding: 0px -1px !important;
 
     span {
-      padding: 0px 24px !important;
+      padding: 15px 24px !important;
       font-size: 1.5rem;
     }
 
-    height: 6rem;
+    height: 4.5rem;
+
+    img {
+      height: 65px !important;
+    }
+  }
+
+  .containerOptions {
+    display: none;
+  }
+
+  .menu {
+    display: flex !important;
   }
 }

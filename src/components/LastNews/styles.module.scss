@@ -92,4 +92,12 @@
     height: 35px !important;
     font-size: 1.5rem !important;
   }
+
+  .othersImgContainer {
+    width: 200px !important;
+    img {
+      width: auto !important;
+      height: 100%;
+    }
+  }
 }

@@ -1,0 +1,67 @@
+.container {
+  position: fixed;
+  z-index: 20;
+  background-color: var(--background);
+  width: 60%;
+  height: 100%;
+  padding: 30px;
+  font-size: 21px;
+  color: #ffffff;
+  top: 0px;
+  left: 0px;
+
+  animation-name: displaynav;
+  animation-duration: 0.5s;
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    text-indent: -1.2em;
+    padding: 10px 0px;
+
+    &:before {
+      content: '►';
+      display: block;
+      float: left;
+      width: 1em;
+      color: var(--main);
+      font-size: 10px;
+      margin-left: 20px;
+    }
+  }
+
+  @keyframes displaynav {
+    from {
+      left: -60%;
+    }
+    to {
+      left: 0px;
+    }
+  }
+}
+
+.subItems {
+  margin-left: 45px;
+}
+
+.blackShadow {
+  position: fixed;
+  z-index: 19;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btnClose {
+  background-color: transparent;
+  border: none;
+  color: var(--complement-main);
+  margin-bottom: 30px;
+}

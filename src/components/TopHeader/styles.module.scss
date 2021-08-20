@@ -95,5 +95,23 @@
 
   .othersImgContainer {
     width: auto !important;
+
+    img {
+      width: 170%;
+    }
+  }
+
+  .topOneImgContainer {
+    height: 215px !important;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .topItem {
+    h2 {
+      font-size: revert !important;
+    }
   }
 }

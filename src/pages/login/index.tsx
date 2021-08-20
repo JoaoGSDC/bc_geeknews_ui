@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
 import Image from 'next/image';
 
-import logo from '../../../public/logo_bycross.png';
+import logo from '../../../public/logo_geek_news.png';
 
 export default function Login() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function Login() {
     <>
       <div className={styles.container}>
         <div className={styles.cardModel}>
-          <Image src={logo} alt="ByCross" />
+          <img src="/logo_geek_news.png" alt="ByCross" />
 
           <div className={styles.fieldsContainer}>
             <span>Usuário</span>

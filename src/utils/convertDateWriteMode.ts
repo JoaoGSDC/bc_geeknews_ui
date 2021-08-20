@@ -1,10 +1,8 @@
 export function convertDateWriteMode(date: Date) {
-  const formatedDate = new Intl.DateTimeFormat('pt-br').format(date);
-  const dateSeparate = formatedDate.split('-');
+  const formatedDate = new Date(date);
+  const month = setFormatMonth(Number(formatedDate.getMonth()));
 
-  const month = setFormatMonth(Number(dateSeparate[1]));
-
-  return `${dateSeparate[2]} de ${month} de ${dateSeparate[0]}`;
+  return `${formatedDate.getDate() + 1} de ${month} de ${formatedDate.getFullYear()}`;
 }
 
 function setFormatMonth(month: number): string {
@@ -23,5 +21,5 @@ function setFormatMonth(month: number): string {
     'Dezembro',
   ];
 
-  return months[month - 1];
+  return months[month];
 }

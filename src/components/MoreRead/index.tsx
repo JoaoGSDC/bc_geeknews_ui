@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Image from 'next/image';
 
@@ -13,7 +14,7 @@ export default function MoreRead({ moreRead }: any) {
         </div>
 
         <div className={styles.othersImgContainer}>
-          <Image src={moreRead?.image} alt="" />
+          <img src={moreRead?.image} alt="" />
         </div>
       </div>
     </>

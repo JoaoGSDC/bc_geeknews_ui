@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import LastNews from '../components/LastNews';
@@ -8,23 +9,65 @@ import { api } from '../services/api';
 import styles from '../styles/Home.module.scss';
 
 export default function Home({ news, tops, moreRead }: any) {
+  const [homeNews, setHomeNews] = useState<any>(news);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+
+  const limit = 1;
+
+  useEffect(() => {
+    const serviceNews = async () => {
+      await api
+        .get('/api/news/findAll', {
+          params: {
+            limit,
+            page: currentPage * limit,
+          },
+        })
+        .then((response: any) => {
+          if (response.data.length === 0) {
+            return;
+          }
+
+          setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...response.data]);
+        })
+        .catch((error: any) => console.log(error));
+    };
+
+    serviceNews();
+  }, [currentPage]);
+
+  useEffect(() => {
+    const intersectionObserver = new IntersectionObserver((entries: any) => {
+      if (entries.some((entry: any) => entry.isIntersecting)) {
+        setCurrentPage((currentPageInsideState: number) => currentPageInsideState + 1);
+      }
+    });
+
+    const sentinela: Element = document.querySelector('#sentinela') as Element;
+    intersectionObserver.observe(sentinela);
+
+    return () => intersectionObserver.disconnect();
+  }, []);
+
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <TopHeader tops={tops} />
+        <TopHeader key={tops} tops={tops} />
       </div>
 
       <div style={{ display: 'flex' }}>
         <div>
-          {news.map((notice: any) => (
-            <LastNews key={notice.id} notice={notice} />
+          {homeNews.map((notice: any) => (
+            <LastNews key={notice._id} notice={notice} />
           ))}
+
+          <div id="sentinela" />
         </div>
 
         <div className={styles.container}>
           <h2 style={{ color: '#fff', marginLeft: 20, borderBottom: '3px solid var(--main)', width: 150 }}>Em alta</h2>
           {moreRead.map((read: any) => (
-            <MoreRead key={read.id} moreRead={read} />
+            <MoreRead key={read._id} moreRead={read} />
           ))}
         </div>
       </div>
@@ -33,13 +76,20 @@ export default function Home({ news, tops, moreRead }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const respNews = await api.get('/api/news/findAll');
+  /* const respNews = await api.get('/api/news/findAll', {
+    params: {
+      limit: 1,
+      page: 1,
+    },
+  }); */
+
   const respTop = await api.get('/api/news/findTop');
   const respMore = await api.get('/api/news/findMostRead');
 
   return {
     props: {
-      news: respNews.data,
+      // news: respNews.data,
+      news: [],
       tops: respTop.data,
       moreRead: respMore.data,
     },

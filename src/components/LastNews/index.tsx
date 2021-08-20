@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,7 +8,7 @@ import styles from './styles.module.scss';
 export default function LastNews({ notice }: any) {
   return (
     <>
-      <Link href={`/noticia/${notice.title?.split(' ').join('-')}-${notice.id}`} passHref={true}>
+      <Link href={`/noticia/${notice.title?.split(' ').join('-')}-${notice._id}`} passHref={true}>
         <div className={styles.container}>
           <div className={styles.relativeContainer}>
             <div className={styles.topItem}>
@@ -15,7 +16,7 @@ export default function LastNews({ notice }: any) {
             </div>
 
             <div className={styles.othersImgContainer}>
-              <Image src={notice.image} alt="" />
+              <img src={notice.image} alt="" />
             </div>
           </div>
 

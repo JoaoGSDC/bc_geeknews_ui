@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetServerSideProps } from 'next';
 import React from 'react';
 import { FaRegPlayCircle } from 'react-icons/fa';
@@ -29,11 +30,6 @@ type PodcastProps = {
 export default function Podcast({ podcasts }: PodcastProps) {
   return (
     <>
-      {/* <div className={styles.container}>
-        {podcasts.map((notice: any) => (
-          <MoreRead read={notice} />
-        ))}
-      </div> */}
       <div>
         <>
           <div>
@@ -41,7 +37,7 @@ export default function Podcast({ podcasts }: PodcastProps) {
               <FaRegPlayCircle />
             </div>
             <h2>{podcasts[0].title}</h2>
-            <Image src={podcasts[0].image} alt="image" />
+            <img src={podcasts[0].image} alt="image" />
           </div>
         </>
       </div>

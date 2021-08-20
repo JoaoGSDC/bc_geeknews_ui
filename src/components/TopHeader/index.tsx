@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,7 +9,7 @@ export default function TopHeader({ tops }: any) {
   return (
     <>
       <div className={styles.container}>
-        <Link href={`/noticia/${tops[0]?.title?.split(' ').join('-')}-${tops[0]?.id}`} passHref={true}>
+        <Link href={`/noticia/${tops[0]?.title?.split(' ').join('-')}-${tops[0]?._id}`} passHref={true}>
           <div className={styles.relativeContainer}>
             <div className={styles.topItem}>
               <div className={styles.tag}>{tops[0]?.category}</div>
@@ -16,13 +17,13 @@ export default function TopHeader({ tops }: any) {
             </div>
 
             <div className={styles.topOneImgContainer}>
-              <Image src={tops[0]?.image} alt="" />
+              <img src={tops[0]?.image} alt="" />
             </div>
           </div>
         </Link>
 
         <div className={styles.mobileOthersContainer}>
-          <Link href={`/noticia/${tops[1]?.title?.split(' ').join('-')}-${tops[1]?.id}`} passHref={true}>
+          <Link href={`/noticia/${tops[1]?.title?.split(' ').join('-')}-${tops[1]?._id}`} passHref={true}>
             <div className={styles.relativeContainer}>
               <div className={styles.topItem}>
                 <div className={styles.tag}>{tops[1]?.category}</div>
@@ -30,12 +31,12 @@ export default function TopHeader({ tops }: any) {
               </div>
 
               <div className={styles.othersImgContainer}>
-                <Image src={tops[1]?.image} alt="" />
+                <img src={tops[1]?.image} alt="" />
               </div>
             </div>
           </Link>
 
-          <Link href={`/noticia/${tops[2]?.title?.split(' ').join('-')}-${tops[2]?.id}`} passHref={true}>
+          <Link href={`/noticia/${tops[2]?.title?.split(' ').join('-')}-${tops[2]?._id}`} passHref={true}>
             <div className={styles.relativeContainer}>
               <div className={styles.topItem}>
                 <div className={styles.tag}>{tops[2]?.category}</div>
@@ -43,7 +44,7 @@ export default function TopHeader({ tops }: any) {
               </div>
 
               <div className={styles.othersImgContainer}>
-                <Image src={tops[2]?.image} alt="" />
+                <img src={tops[2]?.image} alt="" />
               </div>
             </div>
           </Link>

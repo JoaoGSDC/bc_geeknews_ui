@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetServerSideProps } from 'next';
 import React from 'react';
 import { api } from '../../services/api';
@@ -7,7 +8,7 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 
 export default function Matter({ news }: any) {
-  const { title, subtitle, datepublication, image, matter } = news;
+  const { title, subtitle, datepublication, image, matter, username } = news;
 
   function createMatter() {
     return { __html: matter };
@@ -17,9 +18,15 @@ export default function Matter({ news }: any) {
     <>
       <div className={styles.container}>
         <h1>{title}</h1>
+
         <h3>{subtitle}</h3>
-        <span>{datepublication}</span>
-        <Image src={image} alt="" />
+
+        <span>
+          {datepublication} - {username}
+        </span>
+
+        <img src={image} alt="" />
+
         <div dangerouslySetInnerHTML={createMatter()} />
       </div>
     </>
@@ -28,10 +35,7 @@ export default function Matter({ news }: any) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slugArray = String(params?.slug).split('-');
-  const maxIndex = slugArray.length - 1;
-  const id = `${slugArray[maxIndex - 4]}-${slugArray[maxIndex - 3]}-${slugArray[maxIndex - 2]}-${
-    slugArray[maxIndex - 1]
-  }-${slugArray[maxIndex]}`;
+  const id = slugArray[slugArray.length - 1];
 
   const { data } = await api.get('/api/news/findOne', { data: { _id: id } });
 
@@ -43,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         datepublication: convertDateWriteMode(new Date(data[0].datepublication)),
         image: data[0].image,
         matter: data[0].matter,
+        username: data[0].username,
       },
     },
   };
