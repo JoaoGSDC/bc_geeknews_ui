@@ -7,10 +7,14 @@ import TopHeader from '../components/TopHeader';
 import { api } from '../services/api';
 
 import styles from '../styles/Home.module.scss';
+import Loading from '../components/Loading';
+import NgIf from '../components/NgIf';
 
 export default function Home({ news, tops, moreRead }: any) {
   const [homeNews, setHomeNews] = useState<any>(news);
   const [currentPage, setCurrentPage] = useState<number>(0);
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   const limit = 1;
 
@@ -29,6 +33,7 @@ export default function Home({ news, tops, moreRead }: any) {
           }
 
           setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...response.data]);
+          setLoading(false);
         })
         .catch((error: any) => console.log(error));
     };
@@ -37,6 +42,7 @@ export default function Home({ news, tops, moreRead }: any) {
   }, [currentPage]);
 
   useEffect(() => {
+    setLoading(true);
     const intersectionObserver = new IntersectionObserver((entries: any) => {
       if (entries.some((entry: any) => entry.isIntersecting)) {
         setCurrentPage((currentPageInsideState: number) => currentPageInsideState + 1);
@@ -62,6 +68,12 @@ export default function Home({ news, tops, moreRead }: any) {
           ))}
 
           <div id="sentinela" />
+
+          <NgIf condition={loading}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+              <Loading />
+            </div>
+          </NgIf>
         </div>
 
         <div className={styles.container}>
@@ -76,19 +88,11 @@ export default function Home({ news, tops, moreRead }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  /* const respNews = await api.get('/api/news/findAll', {
-    params: {
-      limit: 1,
-      page: 1,
-    },
-  }); */
-
   const respTop = await api.get('/api/news/findTop');
   const respMore = await api.get('/api/news/findMostRead');
 
   return {
     props: {
-      // news: respNews.data,
       news: [],
       tops: respTop.data,
       moreRead: respMore.data,
