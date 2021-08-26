@@ -1,6 +1,8 @@
 import { GetServerSideProps } from 'next';
 import React, { useState } from 'react';
 import { FaDownload, FaPen, FaPlus, FaTable, FaTrash } from 'react-icons/fa';
+import { DataGrid } from '@material-ui/data-grid';
+import RichTextEditor from '../../components/RichTextEditor';
 import { api } from '../../services/api';
 import { convertDateWriteMode } from '../../utils/convertDateWriteMode';
 import styles from './styles.module.scss';
@@ -117,6 +119,105 @@ export default function Dashboard({ news }: any) {
     setIsTable(true);
   }
 
+  function DashboardTable() {
+    const columns = [
+      { field: 'id', headerName: 'ID', width: 150, hide: true },
+      { field: 'title', headerName: 'Matéria', width: 450 },
+      { field: 'datepublication', headerName: 'Data', width: 200 },
+      { field: 'username', headerName: 'Usuário', width: 200 },
+    ];
+
+    return (
+      <>
+        <div className={styles.container}>
+          <div className={styles.datagridContainer}>
+            <DataGrid rows={news} columns={columns} pageSize={10} checkboxSelection />
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  function DashboardNewMatter() {
+    return (
+      <>
+        <div className={styles.container}>
+          <h2>Adicionar nova matéria</h2>
+
+          <div className={styles.newMatterContainer}>
+            <div className={styles.editorContainer}>
+              <div className={styles.textEditorContainer}>
+                <RichTextEditor onChange={(value: any) => setText(value)} />
+              </div>
+            </div>
+
+            <div className={styles.fieldsContainer}>
+              <div className={styles.containerFields}>
+                <span>Título</span>
+                <input placeholder="Título" onChange={(event: any) => setTitle(event.target.value)} />
+              </div>
+
+              <div className={styles.containerFields}>
+                <span>Imagem</span>
+                <div className={styles.fieldImage}>
+                  <input placeholder="Capa" onChange={(event: any) => setCover(event.target.value)} />
+                  <a target="_blank" href="https://bycross-software.imgbb.com/" rel="noopener noreferrer">
+                    <FaDownload size={30} />
+                  </a>
+                </div>
+              </div>
+
+              <div className={styles.containerFields}>
+                <span>Sub Título</span>
+                <input placeholder="Sub Título" onChange={(event: any) => setSubTitle(event.target.value)} />
+              </div>
+
+              <div className={styles.containerFields}>
+                <span>Categoria</span>
+                <select placeholder="Tag" onChange={(event: any) => setTag(event.target.value)}>
+                  <option style={{ display: 'none' }} value="null"></option>
+                  <option value="Nerd">Nerd</option>
+                  <option value="eSports">eSports</option>
+                  <option value="Games">Games</option>
+                </select>
+              </div>
+
+              <div className={styles.containerFields}>
+                <span>Game</span>
+                <select placeholder="Game" onChange={(event: any) => setGame(event.target.value)}>
+                  <option style={{ display: 'none' }} value="null"></option>
+                  <option value="LOL">League of Legends</option>
+                  <option value="FF">Free Fire</option>
+                  <option value="VAVA">Valorant</option>
+                  <option value="CSGO">Counter Strike: Global Offensive</option>
+                </select>
+              </div>
+
+              <div className={styles.containerFields}>
+                <span>Usuário</span>
+                <select placeholder="Usuário" onChange={(event: any) => setUser(event.target.value)}>
+                  <option style={{ display: 'none' }} value="null"></option>
+                  <option value={`João "Fanton Lord" Gabriel`}>João &quot;Fanton Lord&quot; Gabriel</option>
+                  <option value="Redação">Redação</option>
+                </select>
+              </div>
+
+              <div className={styles.buttonsContainer}>
+                <button className={styles.primary} type="button" onClick={() => onClickSave()}>
+                  Salvar
+                </button>
+
+                <button className={styles.secondary} type="button" onClick={() => cancel()}>
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <div className={styles.optionsContainer}>
@@ -141,108 +242,7 @@ export default function Dashboard({ news }: any) {
         </button>
       </div>
 
-      {isTable ? (
-        <>
-          <div className={styles.container}>
-            <h2 style={{ textAlign: 'center' }}>Matérias publicadas</h2>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>Matéria</th>
-                  <th>Data</th>
-                  <th>Usuário</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-
-              {news.map((matter: INewsDTO) => {
-                console.log(matter);
-                <tbody>
-                  <td>{matter.title}</td>
-                  <td>{matter.datepublication}</td>
-                  <td>{matter.username}</td>
-                  <td>
-                    <FaPen size={15} onClick={() => setUpdateItems(matter)} />
-                    <FaTrash size={15} onClick={() => deleteMatter(matter.id)} />
-                  </td>
-                </tbody>;
-              })}
-            </table>
-          </div>
-        </>
-      ) : (
-        <div className={styles.container}>
-          <h2>Adicionar nova matéria</h2>
-
-          <div className={styles.selectFieldsContainer}>
-            <div className={styles.containerFields}>
-              <span>Título</span>
-              <input placeholder="Título" onChange={(event: any) => setTitle(event.target.value)} />
-            </div>
-
-            <div className={styles.containerFields}>
-              <span>Imagem</span>
-              <div className={styles.fieldImage}>
-                <input placeholder="Capa" onChange={(event: any) => setCover(event.target.value)} />
-                <a target="_blank" href="https://bycross-software.imgbb.com/" rel="noopener noreferrer">
-                  <FaDownload size={30} />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.containerFields}>
-            <span>Sub Título</span>
-            <input placeholder="Sub Título" onChange={(event: any) => setSubTitle(event.target.value)} />
-          </div>
-
-          <span>Matéria</span>
-          <textarea placeholder="Texto" onChange={(event: any) => setText(event.target.value)} />
-
-          <div className={styles.selectFieldsContainer}>
-            <div className={styles.containerFields}>
-              <span>Categoria</span>
-              <select placeholder="Tag" onChange={(event: any) => setTag(event.target.value)}>
-                <option style={{ display: 'none' }} value="null"></option>
-                <option value="Nerd">Nerd</option>
-                <option value="eSports">eSports</option>
-                <option value="Games">Games</option>
-              </select>
-            </div>
-
-            <div className={styles.containerFields}>
-              <span>Game</span>
-              <select placeholder="Game" onChange={(event: any) => setGame(event.target.value)}>
-                <option style={{ display: 'none' }} value="null"></option>
-                <option value="LOL">League of Legends</option>
-                <option value="FF">Free Fire</option>
-                <option value="VAVA">Valorant</option>
-                <option value="CSGO">Counter Strike: Global Offensive</option>
-              </select>
-            </div>
-
-            <div className={styles.containerFields}>
-              <span>Usuário</span>
-              <select placeholder="Usuário" onChange={(event: any) => setUser(event.target.value)}>
-                <option style={{ display: 'none' }} value="null"></option>
-                <option value={`João "Fanton Lord" Gabriel`}>João &quot;Fanton Lord&quot; Gabriel</option>
-                <option value="Redação">Redação</option>
-              </select>
-            </div>
-          </div>
-
-          <div className={styles.buttonsContainer}>
-            <button className={styles.primary} type="button" onClick={() => onClickSave()}>
-              Salvar
-            </button>
-
-            <button className={styles.secondary} type="button" onClick={() => cancel()}>
-              Cancelar
-            </button>
-          </div>
-        </div>
-      )}
+      {isTable ? <DashboardTable /> : <DashboardNewMatter />}
     </>
   );
 }

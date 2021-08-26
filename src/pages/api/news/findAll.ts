@@ -9,6 +9,24 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
 
     const { limit, page } = request.query;
 
+    if (limit == undefined) {
+      let news: any[] = [];
+
+      await db
+        .collection('news')
+        .find()
+        .sort({
+          datepublication: -1,
+        })
+        .toArray()
+        .then((results: any) => (news = results))
+        .catch((error) => console.error(error));
+
+      console.log('\nAll values of news status: Success!\n');
+
+      return response.json(news);
+    }
+
     let news: any[] = [];
 
     await db

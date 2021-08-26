@@ -1,4 +1,5 @@
 import '../styles/globals.scss';
+import 'react-quill/dist/quill.snow.css';
 import type { AppProps } from 'next/app';
 
 import Header from '../components/Header';
