@@ -72,6 +72,14 @@
   -webkit-box-orient: vertical;
 }
 
+.mobileOthersContainer {
+  .topItem {
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+}
+
 @media screen and (max-width: 600px) {
   .container {
     margin: 15px !important;

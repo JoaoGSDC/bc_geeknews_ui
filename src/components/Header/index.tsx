@@ -31,7 +31,7 @@ export default function Header() {
 
         <Link href="/" passHref={true}>
           <div className={styles.flex}>
-            <img src="/logo_bycross.png" alt="ByCross" />
+            <img src="/logo_gkn.png" alt="ByCross" />
           </div>
         </Link>
 
