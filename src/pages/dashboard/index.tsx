@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FaDownload, FaPen, FaPlus, FaTable, FaTrash } from 'react-icons/fa';
 import { DataGrid } from '@material-ui/data-grid';
 import RichTextEditor from '../../components/RichTextEditor';
@@ -20,6 +20,7 @@ interface INewsDTO {
 }
 
 export default function Dashboard({ news }: any) {
+  const [id, setId] = useState<string>('');
   const [title, setTitle] = useState<string>('');
   const [subTitle, setSubTitle] = useState<string>('');
   const [cover, setCover] = useState<string>('');
@@ -31,18 +32,23 @@ export default function Dashboard({ news }: any) {
   const [isTable, setIsTable] = useState<boolean>(true);
   const [isUpdate, setIsUpdate] = useState<boolean>(true);
 
+  const [saveConfirm, setSaveConfirm] = useState<boolean>(false);
+
   async function onClickSave() {
     if (!window.confirm('Deseja mesmo salvar essa matéria?')) {
       return;
     }
 
+    const matter: string = String(localStorage.getItem('matter'));
+
     if (isUpdate) {
       await api
         .put('/api/news/update', {
+          id,
           title,
           subtitle: subTitle,
           image: cover,
-          matter: text,
+          matter,
           category: tag,
           game,
           username: user,
@@ -64,7 +70,7 @@ export default function Dashboard({ news }: any) {
         title,
         subtitle: subTitle,
         image: cover,
-        matter: text,
+        matter,
         category: tag,
         game,
         username: user,
@@ -82,17 +88,34 @@ export default function Dashboard({ news }: any) {
       });
   }
 
-  function setUpdateItems(matter: INewsDTO) {
-    setTitle(matter.title);
-    setSubTitle(matter.subtitle);
-    setCover(matter.image);
-    setText(matter.matter);
-    setGame(matter.game);
-    setTag(matter.category);
+  async function setUpdateItems(matterRow: any) {
+    await api
+      .get('/api/news/findOne', {
+        params: {
+          id: matterRow.row.id,
+        },
+      })
+      .then((response: any) => {
+        const matter = response.data[0];
 
-    setIsUpdate(true);
+        setId(matter._id);
 
-    setIsTable(false);
+        setTitle(matter.title);
+        setSubTitle(matter.subtitle);
+        setCover(matter.image);
+        setText(matter.matter);
+
+        localStorage.setItem('matter', matter.matter);
+
+        setGame(matter.game);
+        setTag(matter.category);
+        setUser(matter.username);
+
+        setIsUpdate(true);
+
+        setIsTable(false);
+      })
+      .catch((error: any) => console.log(error));
   }
 
   async function deleteMatter(matterId: string) {
@@ -109,6 +132,7 @@ export default function Dashboard({ news }: any) {
   }
 
   function cancel() {
+    setId('');
     setTitle('');
     setSubTitle('');
     setCover('');
@@ -117,6 +141,7 @@ export default function Dashboard({ news }: any) {
     setTag('');
     setIsUpdate(false);
     setIsTable(true);
+    localStorage.removeItem('matter');
   }
 
   function DashboardTable() {
@@ -131,7 +156,13 @@ export default function Dashboard({ news }: any) {
       <>
         <div className={styles.container}>
           <div className={styles.datagridContainer}>
-            <DataGrid rows={news} columns={columns} pageSize={10} checkboxSelection />
+            <DataGrid
+              rows={news}
+              columns={columns}
+              pageSize={10}
+              checkboxSelection
+              onRowDoubleClick={(value: any) => setUpdateItems(value)}
+            />
           </div>
         </div>
       </>
@@ -147,20 +178,20 @@ export default function Dashboard({ news }: any) {
           <div className={styles.newMatterContainer}>
             <div className={styles.editorContainer}>
               <div className={styles.textEditorContainer}>
-                <RichTextEditor onChange={(value: any) => setText(value)} />
+                <RichTextEditor />
               </div>
             </div>
 
             <div className={styles.fieldsContainer}>
               <div className={styles.containerFields}>
                 <span>Título</span>
-                <input placeholder="Título" onChange={(event: any) => setTitle(event.target.value)} />
+                <input placeholder="Título" value={title} onChange={(event: any) => setTitle(event.target.value)} />
               </div>
 
               <div className={styles.containerFields}>
                 <span>Imagem</span>
                 <div className={styles.fieldImage}>
-                  <input placeholder="Capa" onChange={(event: any) => setCover(event.target.value)} />
+                  <input placeholder="Capa" value={cover} onChange={(event: any) => setCover(event.target.value)} />
                   <a target="_blank" href="https://bycross-software.imgbb.com/" rel="noopener noreferrer">
                     <FaDownload size={30} />
                   </a>
@@ -169,12 +200,16 @@ export default function Dashboard({ news }: any) {
 
               <div className={styles.containerFields}>
                 <span>Sub Título</span>
-                <input placeholder="Sub Título" onChange={(event: any) => setSubTitle(event.target.value)} />
+                <input
+                  placeholder="Sub Título"
+                  value={subTitle}
+                  onChange={(event: any) => setSubTitle(event.target.value)}
+                />
               </div>
 
               <div className={styles.containerFields}>
                 <span>Categoria</span>
-                <select placeholder="Tag" onChange={(event: any) => setTag(event.target.value)}>
+                <select placeholder="Tag" value={tag} onChange={(event: any) => setTag(event.target.value)}>
                   <option style={{ display: 'none' }} value="null"></option>
                   <option value="Nerd">Nerd</option>
                   <option value="eSports">eSports</option>
@@ -184,7 +219,7 @@ export default function Dashboard({ news }: any) {
 
               <div className={styles.containerFields}>
                 <span>Game</span>
-                <select placeholder="Game" onChange={(event: any) => setGame(event.target.value)}>
+                <select placeholder="Game" value={game} onChange={(event: any) => setGame(event.target.value)}>
                   <option style={{ display: 'none' }} value="null"></option>
                   <option value="LOL">League of Legends</option>
                   <option value="FF">Free Fire</option>
@@ -195,7 +230,7 @@ export default function Dashboard({ news }: any) {
 
               <div className={styles.containerFields}>
                 <span>Usuário</span>
-                <select placeholder="Usuário" onChange={(event: any) => setUser(event.target.value)}>
+                <select placeholder="Usuário" value={user} onChange={(event: any) => setUser(event.target.value)}>
                   <option style={{ display: 'none' }} value="null"></option>
                   <option value={`João "Fanton Lord" Gabriel`}>João &quot;Fanton Lord&quot; Gabriel</option>
                   <option value="Redação">Redação</option>

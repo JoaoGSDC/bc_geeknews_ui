@@ -1,11 +1,13 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { Db } from 'mongodb';
+import { Db, ObjectId } from 'mongodb';
 import connectToDatabase from '../connection';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (request: VercelRequest, response: VercelResponse): Promise<VercelResponse> => {
   try {
-    const { _id } = request.body;
+    const { id, title, subtitle, image, matter, category, game, username } = request.body;
+
+    console.log(request.body);
 
     const db: Db = await connectToDatabase(process.env.MONGODB_URI);
 
@@ -15,14 +17,16 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
       .collection('news')
       .updateOne(
         {
-          _id,
+          _id: new ObjectId(id),
         },
         {
-          $set: request.body,
+          $set: { title, subtitle, image, matter, category, game, username },
         }
       )
       .then((results: any) => (news = results))
       .catch((error) => console.error(error));
+
+    console.log('Update news status: Success!\n');
 
     return response.json(news);
   } catch (error: any) {

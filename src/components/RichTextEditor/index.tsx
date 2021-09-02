@@ -1,9 +1,11 @@
 import dynamic from 'next/dynamic';
+import React, { useEffect, useState } from 'react';
+import Loading from '../Loading';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
   // eslint-disable-next-line react/display-name
-  loading: () => <p>Loading ...</p>,
+  loading: () => <Loading />,
 });
 
 const modules = {
@@ -33,17 +35,18 @@ const formats = [
 ];
 
 interface IPropsDTO {
-  onChange: any;
+  onChange?: any;
 }
 
 const RichTextEditor = ({ onChange }: IPropsDTO) => {
   return (
     <QuillNoSSRWrapper
+      value={String(localStorage.getItem('matter'))}
       modules={modules}
       formats={formats}
       theme="snow"
       style={{ height: '90%' }}
-      onChange={(value: any) => onChange(value)}
+      onChange={(value: any) => localStorage.setItem('matter', value)}
     />
   );
 };

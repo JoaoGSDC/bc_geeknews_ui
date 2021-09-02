@@ -37,17 +37,21 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slugArray = String(params?.slug).split('-');
   const id = slugArray[slugArray.length - 1];
 
-  const { data } = await api.get('/api/news/findOne', { data: { _id: id } });
+  console.log(id);
+
+  const { data } = await api.get('/api/news/findOne', { params: { _id: id } });
+
+  console.log(data);
 
   return {
     props: {
       news: {
-        title: data[0].title,
-        subtitle: data[0].subtitle,
-        datepublication: convertDateWriteMode(new Date(data[0].datepublication)),
-        image: data[0].image,
-        matter: data[0].matter,
-        username: data[0].username,
+        title: data.title,
+        subtitle: data.subtitle,
+        datepublication: convertDateWriteMode(new Date(data.datepublication)),
+        image: data.image,
+        matter: data.matter,
+        username: data.username,
       },
     },
   };
