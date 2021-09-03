@@ -94,10 +94,19 @@
   }
 
   .othersImgContainer {
-    width: 200px !important;
+    width: 190px !important;
+
     img {
       width: auto !important;
       height: 100%;
     }
+  }
+
+  .title {
+    font-size: 18px !important;
+  }
+
+  .text {
+    font-size: 16px !important;
   }
 }

@@ -37,11 +37,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slugArray = String(params?.slug).split('-');
   const id = slugArray[slugArray.length - 1];
 
-  console.log(id);
-
   const { data } = await api.get('/api/news/findOne', { params: { _id: id } });
 
-  console.log(data);
+  await api.put('/api/views/update', { id, views: Number(data.views) + 1 });
 
   return {
     props: {

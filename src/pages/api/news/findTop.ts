@@ -12,6 +12,7 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
       .collection('news')
       .find()
       .limit(3)
+      .sort({ views: -1 })
       .toArray()
       .then((results: any) => (news = results))
       .catch((error) => console.error(error));

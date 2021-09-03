@@ -9,15 +9,15 @@ export default function TopHeader({ tops }: any) {
   return (
     <>
       <div className={styles.container}>
-        <Link href={`/noticia/${tops[0]?.title?.split(' ').join('-')}-${tops[0]?._id}`} passHref={true}>
+        <Link href={`/noticia/${tops[2]?.title?.split(' ').join('-')}-${tops[2]?._id}`} passHref={true}>
           <div className={styles.relativeContainer}>
             <div className={styles.topItem}>
-              <div className={styles.tag}>{tops[0]?.category}</div>
-              <h2 className={styles.title}>{tops[0]?.title}</h2>
+              <div className={styles.tag}>{tops[2]?.category}</div>
+              <h2 className={styles.title}>{tops[2]?.title}</h2>
             </div>
 
             <div className={styles.topOneImgContainer}>
-              <img src={tops[0]?.image} alt="" />
+              <img src={tops[2]?.image} alt="" />
             </div>
           </div>
         </Link>
@@ -36,15 +36,15 @@ export default function TopHeader({ tops }: any) {
             </div>
           </Link>
 
-          <Link href={`/noticia/${tops[2]?.title?.split(' ').join('-')}-${tops[2]?._id}`} passHref={true}>
+          <Link href={`/noticia/${tops[0]?.title?.split(' ').join('-')}-${tops[0]?._id}`} passHref={true}>
             <div className={styles.relativeContainer}>
               <div className={styles.topItem}>
-                <div className={styles.tag}>{tops[2]?.category}</div>
-                <h2 className={styles.title}>{tops[2]?.title}</h2>
+                <div className={styles.tag}>{tops[0]?.category}</div>
+                <h2 className={styles.title}>{tops[0]?.title}</h2>
               </div>
 
               <div className={styles.othersImgContainer}>
-                <img src={tops[2]?.image} alt="" />
+                <img src={tops[0]?.image} alt="" />
               </div>
             </div>
           </Link>

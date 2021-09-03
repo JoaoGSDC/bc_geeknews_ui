@@ -92,11 +92,13 @@ export default function Dashboard({ news }: any) {
     await api
       .get('/api/news/findOne', {
         params: {
-          id: matterRow.row.id,
+          _id: matterRow.row.id,
         },
       })
       .then((response: any) => {
-        const matter = response.data[0];
+        const matter = response.data;
+
+        console.log(`Matter: ${matter}`);
 
         setId(matter._id);
 
