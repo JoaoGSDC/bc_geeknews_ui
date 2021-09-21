@@ -98,8 +98,6 @@ export default function Dashboard({ news }: any) {
       .then((response: any) => {
         const matter = response.data;
 
-        console.log(`Matter: ${matter}`);
-
         setId(matter._id);
 
         setTitle(matter.title);
@@ -296,8 +294,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       username: values.username || '',
     });
   });
-
-  /* console.log(news); */
 
   return {
     props: {

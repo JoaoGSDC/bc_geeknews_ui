@@ -1,28 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
-import LastNews from '../components/LastNews';
-import MoreRead from '../components/MoreRead';
-import TopHeader from '../components/TopHeader';
-import { api } from '../services/api';
+import LastNews from '../../components/LastNews';
+import MoreRead from '../../components/MoreRead';
+import TopHeader from '../../components/TopHeader';
+import { api } from '../../services/api';
 
 import styles from '../styles/Home.module.scss';
-import Loading from '../components/Loading';
-import NgIf from '../components/NgIf';
+import Loading from '../../components/Loading';
+import NgIf from '../../components/NgIf';
 
-export default function Home({ news, tops, moreRead }: any) {
+export default function Home({ news, tops, category }: any) {
   const [homeNews, setHomeNews] = useState<any>(news);
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const limit = 5;
+  const limit = 1;
 
   useEffect(() => {
     const serviceNews = async () => {
+      if (category !== 'Nerd') {
+        await api
+          .get('/api/news/findByGame', {
+            params: {
+              game: category,
+              limit,
+              page: currentPage * limit,
+            },
+          })
+          .then((response: any) => {
+            if (response.data.length === 0) {
+              return;
+            }
+
+            setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...response.data]);
+            setLoading(false);
+          })
+          .catch((error: any) => console.log(error));
+
+        return;
+      }
+
       await api
-        .get('/api/news/findAll', {
+        .get('/api/news/findByCategory', {
           params: {
+            category,
             limit,
             page: currentPage * limit,
           },
@@ -75,27 +98,25 @@ export default function Home({ news, tops, moreRead }: any) {
             </div>
           </NgIf>
         </div>
-
-        <div className={styles.container}>
-          <h2 style={{ color: '#fff', marginLeft: 20, borderBottom: '3px solid var(--main)', width: 150 }}>Em alta</h2>
-          {moreRead.map((read: any) => (
-            <MoreRead key={read._id} moreRead={read} />
-          ))}
-        </div>
       </div>
     </>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const respTop = await api.get('/api/news/findTop');
-  const respMore = await api.get('/api/news/findMostRead');
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const slugArray = String(params?.slug).split('-');
+  const option = slugArray[slugArray.length - 1];
+
+  const { data } =
+    option !== 'Nerd'
+      ? await api.get('/api/news/findByGame', { params: { game: option } })
+      : await api.get('/api/news/findByCategory', { params: { category: option } });
 
   return {
     props: {
       news: [],
-      tops: respTop.data,
-      moreRead: respMore.data,
+      tops: [data[0], data[1], data[2]],
+      category: option,
     },
   };
 };

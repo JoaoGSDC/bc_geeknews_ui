@@ -12,10 +12,13 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
     await db
       .collection('news')
       .find()
-      .limit(10)
+      .limit(5)
       .sort({ views: -1 })
       .toArray()
-      .then((results: any) => (news = results))
+      .then((results: any) => {
+        news = results;
+        console.log(results);
+      })
       .catch((error) => console.error(error));
 
     return response.json(news);

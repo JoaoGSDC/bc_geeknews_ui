@@ -7,8 +7,6 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
   try {
     const { id, title, subtitle, image, matter, category, game, username } = request.body;
 
-    console.log(request.body);
-
     const db: Db = await connectToDatabase(process.env.MONGODB_URI);
 
     let news: any[] = [];

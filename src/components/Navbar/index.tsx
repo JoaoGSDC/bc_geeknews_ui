@@ -23,11 +23,21 @@ const Navbar = ({ open, onClose }: IPropsDTO) => {
               <li>Notícias</li>
 
               <ul className={styles.subItems}>
-                <li>LOL</li>
-                <li>Free Fire</li>
-                <li>Valorant</li>
-                <li>CS:GO</li>
-                <li>Nerd</li>
+                <Link href="/categoria/LOL" passHref={true}>
+                  <li>LOL</li>
+                </Link>
+                <Link href="/categoria/FF" passHref={true}>
+                  <li>Free Fire</li>
+                </Link>
+                <Link href="/categoria/VAVA" passHref={true}>
+                  <li>Valorant</li>
+                </Link>
+                <Link href="/categoria/CSGO" passHref={true}>
+                  <li>CS:GO</li>
+                </Link>
+                <Link href="/categoria/Nerd" passHref={true}>
+                  <li>Nerd</li>
+                </Link>
               </ul>
 
               {/* <Link href="/videocast">

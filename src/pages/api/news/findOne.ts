@@ -6,7 +6,7 @@ import connectToDatabase from '../connection';
 export default async (request: VercelRequest, response: VercelResponse): Promise<VercelResponse> => {
   try {
     const { _id } = request.query;
-    console.log(`ID: ${_id}`);
+
     const db: Db = await connectToDatabase(process.env.MONGODB_URI);
 
     let news: any[] = [];
@@ -18,7 +18,6 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
       .then((results: any) => (news = results))
       .catch((error) => console.error(error));
 
-    console.log(`news: ${JSON.stringify(news[0])}`);
     console.log('One value of news status: Success!\n');
 
     return response.json(news[0]);

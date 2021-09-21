@@ -49,11 +49,21 @@ export default function Header() {
               onClick={() => setMouseOverNoticias(false)}
               onMouseOver={() => setMouseOverNoticias(true)}
             >
-              <span>LOL</span>
-              <span>Free Fire</span>
-              <span>Valorant</span>
-              <span>CS:GO</span>
-              <span>Nerd</span>
+              <Link href="/categoria/LOL" passHref={true}>
+                <span>LOL</span>
+              </Link>
+              <Link href="/categoria/FF" passHref={true}>
+                <span>Free Fire</span>
+              </Link>
+              <Link href="/categoria/VAVA" passHref={true}>
+                <span>Valorant</span>
+              </Link>
+              <Link href="/categoria/CSGO" passHref={true}>
+                <span>CS:GO</span>
+              </Link>
+              <Link href="/categoria/Nerd" passHref={true}>
+                <span>Nerd</span>
+              </Link>
             </div>
           </span>
           {/* <Link href="/videocast">
