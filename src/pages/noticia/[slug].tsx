@@ -29,12 +29,13 @@ export default function Matter({ news, readToo }: any) {
         <hr />
       </div>
 
-      <h2 style={{ color: '#fff', marginLeft: 150, borderBottom: '3px solid var(--main)', width: 300 }}>Leia também</h2>
+      <h2 style={{ color: '#fff', marginLeft: '10%', borderBottom: '3px solid var(--main)', width: 300 }}>
+        Veja também
+      </h2>
       <div className={styles.readTooContainer}>
         <div className={styles.readTooContainer}>
           {readToo.map((read: any) => (
             <>
-              <MoreRead key={read._id} moreRead={read} />
               <MoreRead key={read._id} moreRead={read} />
             </>
           ))}
@@ -60,7 +61,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         params: {
           category: data.category,
           limit: 3,
-          page: 1,
+          page: 0,
+          id: data._id,
         },
       })
       .then((response: any) => (readToo = response.data))
@@ -71,7 +73,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         params: {
           game: data.game,
           limit: 3,
-          page: 1,
+          page: 0,
+          id: data._id,
         },
       })
       .then((response: any) => (readToo = response.data))

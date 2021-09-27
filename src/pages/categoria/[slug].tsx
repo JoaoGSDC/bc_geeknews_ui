@@ -9,6 +9,7 @@ import { api } from '../../services/api';
 import styles from '../styles/Home.module.scss';
 import Loading from '../../components/Loading';
 import NgIf from '../../components/NgIf';
+import { IMatterDTO } from '../../interfaces/IMatterDTO';
 
 export default function Home({ news, tops, category }: any) {
   const [homeNews, setHomeNews] = useState<any>(news);
@@ -34,7 +35,9 @@ export default function Home({ news, tops, category }: any) {
               return;
             }
 
-            setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...response.data]);
+            const data: IMatterDTO[] = response.data ?? [];
+
+            setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...data]);
             setLoading(false);
           })
           .catch((error: any) => console.log(error));
@@ -55,7 +58,9 @@ export default function Home({ news, tops, category }: any) {
             return;
           }
 
-          setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...response.data]);
+          const data: IMatterDTO[] = response.data ?? [];
+
+          setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...data]);
           setLoading(false);
         })
         .catch((error: any) => console.log(error));
