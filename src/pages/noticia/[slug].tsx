@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       .get('/api/news/findByGame', {
         params: {
           game: data.game,
-          limit: 3,
+          limit: 4,
           page: 1,
         },
       })
