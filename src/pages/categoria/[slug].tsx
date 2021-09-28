@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import LastNews from '../../components/LastNews';
-import MoreRead from '../../components/MoreRead';
 import TopHeader from '../../components/TopHeader';
 import { api } from '../../services/api';
-
-import styles from '../styles/Home.module.scss';
 import Loading from '../../components/Loading';
 import NgIf from '../../components/NgIf';
 import { IMatterDTO } from '../../interfaces/IMatterDTO';

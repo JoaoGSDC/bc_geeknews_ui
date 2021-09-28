@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import LastNews from '../components/LastNews';
 import MoreRead from '../components/MoreRead';
@@ -77,7 +76,9 @@ export default function Home({ news, tops, moreRead }: any) {
         </div>
 
         <div className={styles.container}>
-          <h2 style={{ color: '#fff', marginLeft: 20, borderBottom: '3px solid var(--main)', width: 150 }}>Em alta</h2>
+          <h2 style={{ color: '#fff', marginLeft: 20, borderBottom: '3px solid var(--main)', width: 175 }}>
+            Mais lidas
+          </h2>
           {moreRead.map((read: any) => (
             <MoreRead key={read._id} moreRead={read} />
           ))}
