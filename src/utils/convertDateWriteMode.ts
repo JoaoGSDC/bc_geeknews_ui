@@ -2,7 +2,7 @@ export function convertDateWriteMode(date: Date) {
   const formatedDate = new Date(date);
   const month = setFormatMonth(Number(formatedDate.getMonth()));
 
-  return `${formatedDate.getDate() + 1} de ${month} de ${formatedDate.getFullYear()}`;
+  return `${formatedDate.getDate()} de ${month} de ${formatedDate.getFullYear()}`;
 }
 
 function setFormatMonth(month: number): string {
