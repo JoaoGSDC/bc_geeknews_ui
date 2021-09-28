@@ -12,12 +12,12 @@ import NgIf from '../../components/NgIf';
 import { IMatterDTO } from '../../interfaces/IMatterDTO';
 
 export default function Home({ news, tops, category }: any) {
-  const [homeNews, setHomeNews] = useState<any>(news);
+  const [homeNews, setHomeNews] = useState<IMatterDTO[]>(news);
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const limit = 1;
+  const limit = 5;
 
   useEffect(() => {
     const serviceNews = async () => {
@@ -37,7 +37,7 @@ export default function Home({ news, tops, category }: any) {
 
             const data: IMatterDTO[] = response.data ?? [];
 
-            setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...data]);
+            setHomeNews((homeNewsInsideState: IMatterDTO[]) => [...homeNewsInsideState, ...data]);
             setLoading(false);
           })
           .catch((error: any) => console.log(error));
@@ -60,13 +60,14 @@ export default function Home({ news, tops, category }: any) {
 
           const data: IMatterDTO[] = response.data ?? [];
 
-          setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...data]);
+          setHomeNews((homeNewsInsideState: IMatterDTO[]) => [...homeNewsInsideState, ...data]);
           setLoading(false);
         })
         .catch((error: any) => console.log(error));
     };
 
     serviceNews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   useEffect(() => {

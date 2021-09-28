@@ -1,5 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { Db } from 'mongodb';
+import { IMatterDTO } from '../../../interfaces/IMatterDTO';
 import connectToDatabase from '../connection';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -7,7 +8,7 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
   try {
     const db: Db = await connectToDatabase(process.env.MONGODB_URI);
 
-    let news: any[] = [];
+    let news: IMatterDTO[] = [];
 
     await db
       .collection('news')

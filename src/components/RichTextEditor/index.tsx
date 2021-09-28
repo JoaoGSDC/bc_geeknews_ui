@@ -34,11 +34,7 @@ const formats = [
   'video',
 ];
 
-interface IPropsDTO {
-  onChange?: any;
-}
-
-const RichTextEditor = ({ onChange }: IPropsDTO) => {
+const RichTextEditor = () => {
   return (
     <QuillNoSSRWrapper
       value={String(localStorage.getItem('matter'))}

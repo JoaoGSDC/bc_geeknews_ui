@@ -1,11 +1,12 @@
 import { GetServerSideProps } from 'next';
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaDownload, FaPen, FaPlus, FaTable, FaTrash } from 'react-icons/fa';
 import { DataGrid } from '@material-ui/data-grid';
 import RichTextEditor from '../../components/RichTextEditor';
 import { api } from '../../services/api';
 import { convertDateWriteMode } from '../../utils/convertDateWriteMode';
 import styles from './styles.module.scss';
+import { IMatterDTO } from '../../interfaces/IMatterDTO';
 
 interface INewsDTO {
   id: string;
@@ -32,7 +33,10 @@ export default function Dashboard({ news }: any) {
   const [isTable, setIsTable] = useState<boolean>(true);
   const [isUpdate, setIsUpdate] = useState<boolean>(true);
 
-  const [saveConfirm, setSaveConfirm] = useState<boolean>(false);
+  const [focus, setFocus] = useState<number>(-1);
+  const [matter, setMatter] = useState<IMatterDTO>({} as IMatterDTO);
+
+  useEffect(() => localStorage.setItem('matter', ''), []);
 
   async function onClickSave() {
     if (!window.confirm('Deseja mesmo salvar essa matéria?')) {
@@ -118,20 +122,26 @@ export default function Dashboard({ news }: any) {
       .catch((error: any) => console.log(error));
   }
 
-  async function deleteMatter(matterId: string) {
-    if (!window.confirm('Deseja realmente deletar essa matéria?')) {
+  async function deleteMatter() {
+    const { _id, title } = matter;
+
+    if (!window.confirm(`Deseja deletar a matéria \n${title}\n?`)) {
+      return;
+    }
+
+    if (!window.confirm(`Realmente é a matéria \n${title}\n que você quer deletar?`)) {
       return;
     }
 
     await api
-      .delete('/api/news/remove', { headers: { id: matterId } })
+      .delete('/api/news/remove', { headers: { _id } })
       .then((res: any) => {
         window.alert('Deletado com sucesso!');
       })
       .catch((error: any) => console.log(error));
   }
 
-  function cancel() {
+  function cancel(isUpdate = false) {
     setId('');
     setTitle('');
     setSubTitle('');
@@ -139,8 +149,8 @@ export default function Dashboard({ news }: any) {
     setText('');
     setGame('');
     setTag('');
-    setIsUpdate(false);
-    setIsTable(true);
+    setIsUpdate(isUpdate);
+    setIsTable(!isUpdate);
     localStorage.removeItem('matter');
   }
 
@@ -161,7 +171,8 @@ export default function Dashboard({ news }: any) {
               columns={columns}
               pageSize={10}
               checkboxSelection
-              onRowDoubleClick={(value: any) => setUpdateItems(value)}
+              onRowDoubleClick={(matterRow: any) => setUpdateItems(matterRow)}
+              onCellClick={(matterRow: any) => setMatter(matterRow.row)}
             />
           </div>
         </div>
@@ -185,13 +196,31 @@ export default function Dashboard({ news }: any) {
             <div className={styles.fieldsContainer}>
               <div className={styles.containerFields}>
                 <span>Título</span>
-                <input placeholder="Título" value={title} onChange={(event: any) => setTitle(event.target.value)} />
+                <input
+                  placeholder="Título"
+                  value={title}
+                  onChange={(event: any) => {
+                    setTitle(event.target.value);
+                    setFocus(0);
+                  }}
+                  onBlur={() => setFocus(-1)}
+                  autoFocus={focus === 0}
+                />
               </div>
 
               <div className={styles.containerFields}>
                 <span>Imagem</span>
                 <div className={styles.fieldImage}>
-                  <input placeholder="Capa" value={cover} onChange={(event: any) => setCover(event.target.value)} />
+                  <input
+                    placeholder="Capa"
+                    value={cover}
+                    onChange={(event: any) => {
+                      setCover(event.target.value);
+                      setFocus(1);
+                    }}
+                    onBlur={() => setFocus(-1)}
+                    autoFocus={focus === 1}
+                  />
                   <a target="_blank" href="https://bycross-software.imgbb.com/" rel="noopener noreferrer">
                     <FaDownload size={30} />
                   </a>
@@ -203,7 +232,12 @@ export default function Dashboard({ news }: any) {
                 <input
                   placeholder="Sub Título"
                   value={subTitle}
-                  onChange={(event: any) => setSubTitle(event.target.value)}
+                  onChange={(event: any) => {
+                    setSubTitle(event.target.value);
+                    setFocus(2);
+                  }}
+                  onBlur={() => setFocus(-1)}
+                  autoFocus={focus === 2}
                 />
               </div>
 
@@ -271,9 +305,14 @@ export default function Dashboard({ news }: any) {
           onClick={() => {
             setIsTable(false);
             setIsUpdate(false);
+            cancel(true);
           }}
         >
           <FaPlus size={25} />
+        </button>
+
+        <button type="button" onClick={() => deleteMatter()}>
+          <FaTrash size={25} />
         </button>
       </div>
 

@@ -1,5 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { Db } from 'mongodb';
+import { IMatterDTO } from '../../../interfaces/IMatterDTO';
 import connectToDatabase from '../connection';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -10,7 +11,7 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
     const { limit, page } = request.query;
 
     if (limit == undefined) {
-      let news: any[] = [];
+      let news: IMatterDTO[] = [];
 
       await db
         .collection('news')
@@ -27,7 +28,7 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
       return response.json(news);
     }
 
-    let news: any[] = [];
+    let news: IMatterDTO[] = [];
 
     await db
       .collection('news')
