@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { Db } from 'mongodb';
+import { Db, ObjectId } from 'mongodb';
 import { IMatterDTO } from '../../../interfaces/IMatterDTO';
 import connectToDatabase from '../connection';
 
@@ -16,6 +16,23 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
       await db
         .collection('news')
         .find({
+          category,
+        })
+        .sort({
+          datepublication: -1,
+        })
+        .toArray()
+        .then((results: any) => (news = results))
+        .catch((error) => console.error(error));
+
+      return response.json(news);
+    }
+
+    if (id != undefined) {
+      await db
+        .collection('news')
+        .find({
+          _id: { $ne: new ObjectId(String(id)) },
           category,
         })
         .sort({
