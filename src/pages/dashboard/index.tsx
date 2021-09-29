@@ -141,7 +141,7 @@ export default function Dashboard({ news }: any) {
       .catch((error: any) => console.log(error));
   }
 
-  function cancel(isUpdate = false) {
+  function cancel(isUpdate = false, isTable = true) {
     setId('');
     setTitle('');
     setSubTitle('');
@@ -150,7 +150,7 @@ export default function Dashboard({ news }: any) {
     setGame('');
     setTag('');
     setIsUpdate(isUpdate);
-    setIsTable(!isUpdate);
+    setIsTable(isTable);
     localStorage.removeItem('matter');
   }
 
@@ -305,7 +305,7 @@ export default function Dashboard({ news }: any) {
           onClick={() => {
             setIsTable(false);
             setIsUpdate(false);
-            cancel(true);
+            cancel(false, false);
           }}
         >
           <FaPlus size={25} />
