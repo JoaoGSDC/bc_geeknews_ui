@@ -38,6 +38,8 @@ export default async (request: VercelRequest, response: VercelResponse): Promise
         .sort({
           datepublication: -1,
         })
+        .limit(Number(limit))
+        .skip(Number(page))
         .toArray()
         .then((results: any) => (news = results))
         .catch((error) => console.error(error));

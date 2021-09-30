@@ -78,7 +78,7 @@ export default function Home({ news, tops, category }: any) {
     intersectionObserver.observe(sentinela);
 
     return () => intersectionObserver.disconnect();
-  }, [category]);
+  }, []);
 
   return (
     <>

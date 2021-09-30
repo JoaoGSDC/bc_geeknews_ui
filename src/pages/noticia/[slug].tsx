@@ -3,11 +3,9 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import { api } from '../../services/api';
 import { convertDateWriteMode } from '../../utils/convertDateWriteMode';
-import Image from 'next/image';
 
 import styles from './styles.module.scss';
 import MoreRead from '../../components/MoreRead';
-import Link from 'next/link';
 
 export default function Matter({ news, readToo }: any) {
   const { title, subtitle, datepublication, image, matter, username } = news;
