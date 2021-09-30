@@ -13,7 +13,7 @@ export default function Home({ news, tops, category }: any) {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const limit = 5;
+  const limit = 3;
 
   useEffect(() => {
     const serviceNews = async () => {
@@ -78,7 +78,7 @@ export default function Home({ news, tops, category }: any) {
     intersectionObserver.observe(sentinela);
 
     return () => intersectionObserver.disconnect();
-  }, []);
+  }, [category]);
 
   return (
     <>
