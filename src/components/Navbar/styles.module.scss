@@ -17,6 +17,10 @@
     list-style: none;
   }
 
+  .ul {
+    margin-top: 75px;
+  }
+
   li {
     display: flex;
     align-items: center;
@@ -33,6 +37,10 @@
       font-size: 10px;
       margin-left: 20px;
     }
+
+    &:active {
+      color: var(--main);
+    }
   }
 
   @keyframes displaynav {
@@ -41,6 +49,15 @@
     }
     to {
       left: 0px;
+    }
+  }
+
+  @keyframes closenav {
+    from {
+      left: 0px;
+    }
+    to {
+      left: -60%;
     }
   }
 }
@@ -60,8 +77,39 @@
 }
 
 .btnClose {
-  background-color: transparent;
+  background-color: var(--main);
+  color: var(--background);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
-  color: var(--complement-main);
-  margin-bottom: 30px;
+
+  width: 30px;
+  height: 30px;
+  margin-right: 24px;
+}
+
+.headerContainer {
+  position: absolute;
+  background-color: #1d252a;
+  display: flex;
+  align-items: center;
+  height: 94px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 16px;
+
+  img {
+    width: 50%;
+  }
+}
+
+.footer {
+  top: auto !important;
+  bottom: 0px;
+  padding: 0px !important;
+
+  @extend .headerContainer;
 }

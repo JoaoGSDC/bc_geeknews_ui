@@ -10,13 +10,20 @@ import { IMatterDTO } from '../../interfaces/IMatterDTO';
 export default function Home({ news, tops, category }: any) {
   const [homeNews, setHomeNews] = useState<IMatterDTO[]>(news);
   const [currentPage, setCurrentPage] = useState<number>(0);
-
   const [loading, setLoading] = useState<boolean>(false);
 
   const limit = 3;
 
   useEffect(() => {
+    setHomeNews([]);
+    setCurrentPage(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
+
+  useEffect(() => {
     const serviceNews = async () => {
+      if (currentPage === -1) return;
+
       if (category !== 'Nerd') {
         await api
           .get('/api/news/findByGame', {
@@ -28,6 +35,10 @@ export default function Home({ news, tops, category }: any) {
           })
           .then((response: any) => {
             if (response.data.length === 0) {
+              return;
+            }
+
+            if (homeNews.length > 0 && homeNews[0].game !== response.data[0].game) {
               return;
             }
 
@@ -64,7 +75,7 @@ export default function Home({ news, tops, category }: any) {
 
     serviceNews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [category, currentPage]);
 
   useEffect(() => {
     setLoading(true);
@@ -78,7 +89,7 @@ export default function Home({ news, tops, category }: any) {
     intersectionObserver.observe(sentinela);
 
     return () => intersectionObserver.disconnect();
-  }, []);
+  }, [category]);
 
   return (
     <>

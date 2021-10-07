@@ -7,6 +7,8 @@ import { api } from '../../services/api';
 import { convertDateWriteMode } from '../../utils/convertDateWriteMode';
 import styles from './styles.module.scss';
 import { IMatterDTO } from '../../interfaces/IMatterDTO';
+import router from 'next/router';
+import { useForm } from 'react-hook-form';
 
 interface INewsDTO {
   id: string;
@@ -21,6 +23,18 @@ interface INewsDTO {
 }
 
 export default function Dashboard({ news }: any) {
+  useEffect(() => {
+    const token: string = String(localStorage.getItem('checked'));
+
+    console.log(token);
+
+    if (['null', 'undefined'].includes(token)) {
+      router.push('/login');
+    }
+  }, []);
+
+  const { register, handleSubmit } = useForm();
+
   const [id, setId] = useState<string>('');
   const [title, setTitle] = useState<string>('');
   const [subTitle, setSubTitle] = useState<string>('');

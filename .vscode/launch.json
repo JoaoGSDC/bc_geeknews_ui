@@ -5,10 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to Chrome",
-      "request": "attach",
-      "url": "http://localhost:3000",
       "type": "pwa-chrome",
+      "version": "stable",
+      "request": "launch",
+      "name": "Attach to Chrome",
+      "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}"
     },
     {

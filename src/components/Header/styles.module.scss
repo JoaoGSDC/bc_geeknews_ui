@@ -27,11 +27,43 @@
 
     &:hover {
       color: var(--complement-main);
+      transition: 0.5s;
     }
   }
 
   img {
     height: 50px;
+  }
+
+  .socialMediaIconsContainer {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: var(--complement-main);
+
+    a {
+      color: inherit;
+
+      &:visited {
+        color: inherit;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: var(--main);
+        font-size: 28px;
+        transition: 0.5s;
+      }
+
+      &:active {
+        color: inherit;
+      }
+    }
+
+    svg {
+      margin: 0px 5px;
+      margin-top: 5px;
+    }
   }
 }
 
@@ -56,6 +88,23 @@
   span {
     padding: 25px !important;
     background-color: var(--background);
+  }
+
+  transition: 0.2s;
+
+  animation-name: slideOpen;
+  animation-duration: 0.5s;
+}
+
+@keyframes slideOpen {
+  from {
+    margin-top: -50px;
+    opacity: 0;
+  }
+
+  to {
+    margin-top: 120px;
+    opacity: 1;
   }
 }
 

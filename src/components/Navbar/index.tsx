@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Link from 'next/link';
 import { FiX } from 'react-icons/fi';
@@ -15,45 +16,55 @@ const Navbar = ({ open, onClose }: IPropsDTO) => {
       {open ? (
         <>
           <nav className={styles.container}>
-            <button className={styles.btnClose} onClick={() => onClose(false)}>
-              <FiX size={40} />
-            </button>
+            <div className={styles.headerContainer}>
+              <button className={styles.btnClose} onClick={() => onClose(false)}>
+                <FiX size={40} />
+              </button>
 
-            <ul>
+              <img src="/logo_gkn.png" alt="ByCross" />
+            </div>
+
+            <ul className={styles.ul}>
               <li>Notícias</li>
 
               <ul className={styles.subItems}>
                 <Link href="/categoria/LOL" passHref={true}>
-                  <li>LOL</li>
+                  <li onClick={() => onClose(false)}>LOL</li>
                 </Link>
                 <Link href="/categoria/FF" passHref={true}>
-                  <li>Free Fire</li>
+                  <li onClick={() => onClose(false)}>Free Fire</li>
                 </Link>
                 <Link href="/categoria/VAVA" passHref={true}>
-                  <li>Valorant</li>
+                  <li onClick={() => onClose(false)}>Valorant</li>
                 </Link>
                 <Link href="/categoria/CSGO" passHref={true}>
-                  <li>CS:GO</li>
+                  <li onClick={() => onClose(false)}>CS:GO</li>
                 </Link>
                 <Link href="/categoria/Nerd" passHref={true}>
-                  <li>Nerd</li>
+                  <li onClick={() => onClose(false)}>Nerd</li>
                 </Link>
               </ul>
 
               {/* <Link href="/videocast">
             <span>VideoCast</span>
           </Link> */}
-              <Link href="/podcast" passHref={true}>
+              {/* <Link href="/podcast" passHref={true}>
                 <li>Podcast</li>
-              </Link>
-
-              <li className={styles.player} onClick={() => {}}>
-                Player
-              </li>
+              </Link> */}
             </ul>
+
+            <div className={styles.footer}>
+              {/* <iframe
+                src="https://open.spotify.com/embed/playlist/6Bfn01ZKUp2xN8DBR21V11?theme=0"
+                width="100%"
+                height="80"
+                frameBorder="0"
+                allow="encrypted-media"
+              ></iframe> */}
+            </div>
           </nav>
 
-          <div className={styles.blackShadow} />
+          <div className={styles.blackShadow} onClick={() => onClose(false)} />
         </>
       ) : (
         <></>

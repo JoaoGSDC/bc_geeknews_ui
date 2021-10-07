@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { FiMenu } from 'react-icons/fi';
+import { AiFillInstagram, AiFillFacebook, AiFillLinkedin, AiFillTwitterCircle, AiFillYoutube } from 'react-icons/ai';
 
 import styles from './styles.module.scss';
 import Player from '../Player';
@@ -69,12 +70,31 @@ export default function Header() {
           {/* <Link href="/videocast">
             <span>VideoCast</span>
           </Link> */}
-          <Link href="/podcast" passHref={true}>
+          {/* <Link href="/podcast" passHref={true}>
             <span>Podcast</span>
           </Link>
           <span className={styles.player} onClick={() => setPlayerClick(!playerClick)}>
             Player
-          </span>
+          </span> */}
+
+          <div className={styles.socialMediaIconsContainer}>
+            <a target="_blank" href="https://www.instagram.com/portal.geeknews/" rel="noopener noreferrer">
+              <AiFillInstagram />
+            </a>
+            <a target="_blank" href="https://www.facebook.com/portal.geeknews" rel="noopener noreferrer">
+              <AiFillFacebook />
+            </a>
+            <a
+              target="_blank"
+              href="https://www.youtube.com/channel/UCI24qbWUtrPZx9NT-w1qyPw"
+              rel="noopener noreferrer"
+            >
+              <AiFillYoutube />
+            </a>
+            <a target="_blank" href="https://twitter.com/PortalGeekNews" rel="noopener noreferrer">
+              <AiFillTwitterCircle />
+            </a>
+          </div>
         </div>
 
         <Player playerOpen={playerClick} />
