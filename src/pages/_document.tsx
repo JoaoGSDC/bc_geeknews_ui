@@ -7,11 +7,11 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <Script
+          <script
             data-ad-client="ca-pub-1118328398803027"
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          />
+          ></script>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <Script
             strategy="afterInteractive"
