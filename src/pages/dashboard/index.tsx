@@ -272,7 +272,7 @@ export default function Dashboard({ news }: any) {
                   <option value="LOL">League of Legends</option>
                   <option value="FF">Free Fire</option>
                   <option value="VAVA">Valorant</option>
-                  <option value="CSGO">Counter Strike: Global Offensive</option>
+                  <option value="WR">Wild Rift</option>
                 </select>
               </div>
 

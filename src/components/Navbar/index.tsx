@@ -37,8 +37,8 @@ const Navbar = ({ open, onClose }: IPropsDTO) => {
                 <Link href="/categoria/VAVA" passHref={true}>
                   <li onClick={() => onClose(false)}>Valorant</li>
                 </Link>
-                <Link href="/categoria/CSGO" passHref={true}>
-                  <li onClick={() => onClose(false)}>CS:GO</li>
+                <Link href="/categoria/WR" passHref={true}>
+                  <li onClick={() => onClose(false)}>Wild Rift</li>
                 </Link>
                 <Link href="/categoria/Nerd" passHref={true}>
                   <li onClick={() => onClose(false)}>Nerd</li>

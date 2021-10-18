@@ -59,8 +59,8 @@ export default function Header() {
               <Link href="/categoria/VAVA" passHref={true}>
                 <span>Valorant</span>
               </Link>
-              <Link href="/categoria/CSGO" passHref={true}>
-                <span>CS:GO</span>
+              <Link href="/categoria/WR" passHref={true}>
+                <span>Wild Rift</span>
               </Link>
               <Link href="/categoria/Nerd" passHref={true}>
                 <span>Nerd</span>
