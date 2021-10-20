@@ -16,7 +16,7 @@ export default function MoreRead({ moreRead }: any) {
           </div>
 
           <div className={styles.othersImgContainer}>
-            <img src={moreRead?.image} alt="" />
+            <img src={moreRead?.image} alt="image" />
           </div>
         </div>
       </Link>

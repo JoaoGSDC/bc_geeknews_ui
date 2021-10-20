@@ -16,7 +16,7 @@ export default function LastNews({ notice }: any) {
             </div>
 
             <div className={styles.othersImgContainer}>
-              <img src={notice.image} alt="" />
+              <img src={notice.image} alt="image" />
             </div>
           </div>
 

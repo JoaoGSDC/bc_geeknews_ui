@@ -23,7 +23,7 @@ interface INewsDTO {
 }
 
 export default function Dashboard({ news }: any) {
-  useEffect(() => {
+  /* useEffect(() => {
     const token: string = String(localStorage.getItem('checked'));
 
     console.log(token);
@@ -31,7 +31,7 @@ export default function Dashboard({ news }: any) {
     if (['null', 'undefined'].includes(token)) {
       router.push('/login');
     }
-  }, []);
+  }, []); */
 
   const { register, handleSubmit } = useForm();
 

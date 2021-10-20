@@ -98,7 +98,7 @@ export default function Home({ news, tops, category }: any) {
       </div>
 
       <div style={{ display: 'flex' }}>
-        <div>
+        <div style={{ margin: '0px 30px 0px 15px' }}>
           {homeNews.map((notice: any) => (
             <LastNews key={notice._id} notice={notice} />
           ))}

@@ -17,7 +17,7 @@ export default function TopHeader({ tops }: any) {
             </div>
 
             <div className={styles.topOneImgContainer}>
-              <img src={tops[0]?.image} alt="" />
+              <img src={tops[0]?.image} alt="image" />
             </div>
           </div>
         </Link>
@@ -31,7 +31,7 @@ export default function TopHeader({ tops }: any) {
               </div>
 
               <div className={styles.othersImgContainer}>
-                <img src={tops[1]?.image} alt="" />
+                <img src={tops[1]?.image} alt="image" />
               </div>
             </div>
           </Link>
@@ -44,7 +44,7 @@ export default function TopHeader({ tops }: any) {
               </div>
 
               <div className={styles.othersImgContainer}>
-                <img src={tops[2]?.image} alt="" />
+                <img src={tops[2]?.image} alt="image" />
               </div>
             </div>
           </Link>

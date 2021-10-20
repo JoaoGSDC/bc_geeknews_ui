@@ -22,7 +22,7 @@ export default function Matter({ news, readToo }: any) {
         <span>
           {datepublication} - {username}
         </span>
-        <img src={image} alt="" />
+        <img src={image} alt="image" />
         <div dangerouslySetInnerHTML={createMatter()} />
         <hr />
       </div>

@@ -1,5 +1,5 @@
 <h1 align="center">
-<img width="350" src="https://bycross-geek-news.netlify.app/logo_bycross.png" alt="" />
+<img width="350" src="https://bycross-geek-news.netlify.app/logo_bycross.png" alt="image" />
   
 FrontEnd Portal de Notícias Geek - ReactJS | NextJS
 </h1>
