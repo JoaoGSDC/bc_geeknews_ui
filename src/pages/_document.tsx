@@ -6,6 +6,19 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/*Google Tag Manager*/}
+          <Script
+            dangerouslySetInnerHTML={{
+              __html: `
+              />(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-MJZJ7C3');
+              `,
+            }}
+          />
+          {/*End Google Tag Manager*/}
           <script
             data-ad-client="ca-pub-1118328398803027"
             async
@@ -21,13 +34,13 @@ class MyDocument extends Document {
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                page_path: window.location.pathname,
+              });
+              `,
             }}
           />
           <link rel="manifest" href="/manifest.json" />
@@ -43,6 +56,15 @@ class MyDocument extends Document {
           <meta charSet="utf-8" />
         </Head>
         <body>
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-MJZJ7C3"
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            ></iframe>
+          </noscript>
+
           <Main />
           <NextScript />
         </body>
