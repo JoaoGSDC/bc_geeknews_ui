@@ -7,9 +7,11 @@ interface IEventDTO {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: any) => {
-  window.gtag('config', String(process.env.NEXT_PUBLIC_GA_ID), {
-    page_path: url,
-  });
+  if (typeof window.gtag !== 'undefined') {
+    window.gtag('config', String(process.env.NEXT_PUBLIC_GA_ID), {
+      page_path: url,
+    });
+  }
 };
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
