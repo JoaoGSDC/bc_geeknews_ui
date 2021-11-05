@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import * as gtag from '../lib/gtag';
+import * as gtag from '../lib/ga';
 import '../styles/globals.scss';
 import 'react-quill/dist/quill.snow.css';
 import type { AppProps } from 'next/app';
