@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import LastNews from '../components/LastNews';
 import MoreRead from '../components/MoreRead';
@@ -57,6 +58,10 @@ export default function Home({ news, tops, moreRead }: any) {
   return (
     <>
       <div>
+        <Head>
+          <title>Geek News | Portal</title>
+        </Head>
+
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <TopHeader key={tops} tops={tops} />
         </div>
