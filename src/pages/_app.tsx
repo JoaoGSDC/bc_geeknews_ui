@@ -5,6 +5,7 @@ import '../styles/globals.scss';
 import 'react-quill/dist/quill.snow.css';
 import type { AppProps } from 'next/app';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -25,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Header />
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,25 @@
+.container {
+  margin: 30px;
+  margin-bottom: 60px;
+  color: #fff;
+
+  p {
+    margin: 30px;
+    color: #fff;
+    font-size: 18px;
+  }
+
+  h1 {
+    color: #fff;
+    margin: 30px;
+    margin-top: 50px;
+
+    border-bottom: 3px solid var(--main);
+    width: 35%;
+    border-radius: 3px;
+  }
+
+  a {
+    color: var(--main);
+  }
+}
