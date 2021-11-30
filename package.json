@@ -19,6 +19,8 @@
     "graphql": "^15.5.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.1.0",
+    "multer": "^1.4.3",
+    "multer-gridfs-storage": "^5.0.2",
     "next": "11.0.0",
     "next-pwa": "^5.3.1",
     "nookies": "^2.5.2",
