@@ -235,7 +235,7 @@ export default function Dashboard({ news }: any) {
                     onBlur={() => setFocus(-1)}
                     autoFocus={focus === 1}
                   />
-                  <a target="_blank" href="https://bycross-software.imgbb.com/" rel="noopener noreferrer">
+                  <a target="_blank" href="https://cloudinary.com/console/c-08bf2071cb5a13ce81c4a3cca05822/media_library/folders/home" rel="noopener noreferrer">
                     <FaDownload size={30} />
                   </a>
                 </div>
