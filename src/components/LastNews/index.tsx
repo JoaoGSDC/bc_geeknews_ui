@@ -6,10 +6,16 @@ import Image from 'next/image';
 import styles from './styles.module.scss';
 
 export default function LastNews({ notice }: any) {
+  const handleOpenInNewTab = (event: any) => {
+    if (event.button === 1) {
+      window.open(`/noticia/${notice.title?.split(' ').join('-')}-${notice._id}`);
+    }
+  };
+
   return (
     <>
       <Link href={`/noticia/${notice.title?.split(' ').join('-')}-${notice._id}`} passHref={true}>
-        <div className={styles.container}>
+        <div className={styles.container} onMouseDown={handleOpenInNewTab}>
           <div className={styles.relativeContainer}>
             <div className={styles.topItem}>
               <div className={styles.tag}>{notice.category}</div>
