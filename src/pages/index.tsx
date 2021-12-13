@@ -85,6 +85,7 @@ export default function Home({ news, tops, moreRead }: any) {
             <h2 style={{ color: '#fff', marginLeft: 20, borderBottom: '3px solid var(--main)', width: 175 }}>
               Mais lidas
             </h2>
+
             {moreRead.map((read: any) => (
               <MoreRead key={read._id} moreRead={read} />
             ))}

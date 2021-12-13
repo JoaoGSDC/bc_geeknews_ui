@@ -79,7 +79,7 @@
 .bodyContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 600px) {
@@ -88,13 +88,13 @@
   }
 
   .tag {
-    width: 125px !important;
-    height: 35px !important;
-    font-size: 1.5rem !important;
+    width: 110px !important;
+    height: 30px !important;
+    font-size: 1.25rem !important;
   }
 
   .othersImgContainer {
-    width: 190px !important;
+    width: 180px !important;
 
     img {
       width: auto !important;
@@ -103,18 +103,16 @@
   }
 
   .title {
-    font-size: 18px !important;
+    font-size: 1.125rem !important;
     -webkit-line-clamp: 6 !important;
   }
 
   .text {
-    font-size: 16px !important;
+    font-size: 1rem !important;
     -webkit-line-clamp: 2 !important;
   }
 
-  .bodyContainer {
-    button {
-      display: none !important;
-    }
+  .relativeContainer {
+    margin: 0px 15px 0px 0px !important;
   }
 }
