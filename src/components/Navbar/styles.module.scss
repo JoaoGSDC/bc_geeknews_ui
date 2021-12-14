@@ -27,8 +27,9 @@
     margin-bottom: 15px;
     text-indent: -1.2em;
     padding: 10px 0px;
+    padding-left: 16px;
 
-    &:before {
+    /* &:before {
       content: '►';
       display: block;
       float: left;
@@ -40,6 +41,22 @@
 
     &:active {
       color: var(--main);
+    } */
+
+    img {
+      width: 20px;
+      margin-right: 48px;
+    }
+
+    .icon {
+      width: 32px;
+      margin-left: -8px;
+      margin-right: 44px;
+    }
+
+    span {
+      width: 100%;
+      text-align: center;
     }
   }
 
@@ -63,7 +80,7 @@
 }
 
 .subItems {
-  margin-left: 45px;
+  // margin-left: 45px;
 }
 
 .blackShadow {
@@ -77,8 +94,8 @@
 }
 
 .btnClose {
-  background-color: var(--main);
-  color: var(--background);
+  background-color: transparent;
+  color: var(--main);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -92,7 +109,8 @@
 
 .headerContainer {
   position: absolute;
-  background-color: #1d252a;
+  // background-color: #1d252a;
+  background-color: var(--background);
   display: flex;
   align-items: center;
   height: 94px;

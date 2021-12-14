@@ -25,23 +25,57 @@ const Navbar = ({ open, onClose }: IPropsDTO) => {
             </div>
 
             <ul className={styles.ul}>
-              <li>Notícias</li>
+              <li style={{ borderBottom: '1px solid #404c54', textAlign: 'center' }}>
+                <span>Notícias</span>
+              </li>
 
               <ul className={styles.subItems}>
                 <Link href="/categoria/LOL" passHref={true}>
-                  <li onClick={() => onClose(false)}>LOL</li>
+                  <li onClick={() => onClose(false)}>
+                    <img
+                      src="https://res.cloudinary.com/dj0vikcpc/image/upload/v1639513509/icons/icon-lol_r8pa5u.png"
+                      alt="LOL"
+                    />
+                    LOL
+                  </li>
                 </Link>
                 <Link href="/categoria/FF" passHref={true}>
-                  <li onClick={() => onClose(false)}>Free Fire</li>
+                  <li onClick={() => onClose(false)}>
+                    <img
+                      className={styles.icon}
+                      src="https://res.cloudinary.com/dj0vikcpc/image/upload/v1639513509/icons/icon-ff_eaydef.png"
+                      alt="LOL"
+                    />
+                    Free Fire
+                  </li>
                 </Link>
                 <Link href="/categoria/VAVA" passHref={true}>
-                  <li onClick={() => onClose(false)}>Valorant</li>
+                  <li onClick={() => onClose(false)}>
+                    <img
+                      src="https://res.cloudinary.com/dj0vikcpc/image/upload/v1639513509/icons/icon-vava_uaqfhf.png"
+                      alt="LOL"
+                    />
+                    Valorant
+                  </li>
                 </Link>
                 <Link href="/categoria/WR" passHref={true}>
-                  <li onClick={() => onClose(false)}>Wild Rift</li>
+                  <li onClick={() => onClose(false)}>
+                    <img
+                      src="https://res.cloudinary.com/dj0vikcpc/image/upload/v1639513509/icons/icon-wr_fzr2ra.png"
+                      alt="LOL"
+                    />
+                    Wild Rift
+                  </li>
                 </Link>
                 <Link href="/categoria/Nerd" passHref={true}>
-                  <li onClick={() => onClose(false)}>Nerd</li>
+                  <li onClick={() => onClose(false)}>
+                    <img
+                      className={styles.icon}
+                      src="https://res.cloudinary.com/dj0vikcpc/image/upload/v1639513509/icons/icon-nerd_uhs1ki.png"
+                      alt="LOL"
+                    />
+                    Nerd
+                  </li>
                 </Link>
               </ul>
 
