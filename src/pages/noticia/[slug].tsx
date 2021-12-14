@@ -15,17 +15,31 @@ export default function Matter({ news, readToo, slug }: any) {
     return { __html: matter };
   }
 
+  const url = `https://portalgeeknews.com.br/noticia/${slug}`;
+  const ogImageUrl = image.replace('.webp', '.png');
+
   return (
     <>
       <Head>
         <title>{title}</title>
-        <meta property="og:url" content={`https://portalgeeknews.com.br/noticia/${slug}`} />
-        <meta property="og:type" content="article" />
+
+        <meta name="description" content={subtitle} />
+
+        <meta property="og:site_name" content="Geek News" />
+
         <meta property="og:title" content={title} />
         <meta property="og:description" content={subtitle} />
-        <meta property="og:image" content={image} />
-        <meta property="twitter:card" content="summary" />
-        <link rel="canonical" href={`https://portalgeeknews.com.br/noticia/${slug}`} />
+
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:type" content="image/png" />
+
+        <meta property="og:image:width" content="1280" />
+        <meta property="og:image:height" content="720" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={subtitle} />
+        <meta name="twitter:image" content={ogImageUrl} />
       </Head>
 
       <div className={styles.container}>
@@ -102,7 +116,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         username: data.username,
       },
       readToo,
-      slug: String(params?.slug)
+      slug: String(params?.slug),
     },
   };
 };
