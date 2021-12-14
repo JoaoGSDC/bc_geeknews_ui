@@ -25,6 +25,7 @@ export default function Matter({ news, readToo, slug }: any) {
         <meta property="og:description" content={subtitle} />
         <meta property="og:image" content={image} />
         <meta property="twitter:card" content="summary" />
+        <link rel="canonical" href={`https://portalgeeknews.com.br/noticia/${slug}`} />
       </Head>
 
       <div className={styles.container}>
