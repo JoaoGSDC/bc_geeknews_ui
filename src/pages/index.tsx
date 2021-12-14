@@ -60,6 +60,23 @@ export default function Home({ news, tops, moreRead }: any) {
       <div>
         <Head>
           <title>Geek News | Portal</title>
+
+          <meta name="description" content="Geek News" />
+          <meta property="og:site_name" content="Geek News" />
+
+          <meta property="og:title" content="Geek News" />
+          <meta property="og:description" content="Notícias de Geek para Geek!" />
+
+          <meta property="og:url" content="https://portalgeeknews.com.br/" />
+          <meta property="og:image" content="https://portalgeeknews.com.br/iconGKN512x512.png" />
+
+          <meta property="og:image:width" content="1280" />
+          <meta property="og:image:height" content="720" />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Geek News" />
+          <meta name="twitter:description" content="Notícias de Geek para Geek!" />
+          <meta name="twitter:image" content="https://portalgeeknews.com.br/iconGKN512x512.png" />
         </Head>
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
