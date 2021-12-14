@@ -6,6 +6,7 @@ import { convertDateWriteMode } from '../../utils/convertDateWriteMode';
 
 import styles from './styles.module.scss';
 import MoreRead from '../../components/MoreRead';
+import Head from 'next/head';
 
 export default function Matter({ news, readToo }: any) {
   const { title, subtitle, datepublication, image, matter, username } = news;
@@ -16,6 +17,12 @@ export default function Matter({ news, readToo }: any) {
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <meta property="og:image" content={image} />
+      </Head>
+
       <div className={styles.container}>
         <h1>{title}</h1>
         <h3>{subtitle}</h3>
