@@ -10,7 +10,6 @@ import { IMatterDTO } from '../../interfaces/IMatterDTO';
 export default function Home({ news, tops, category }: any) {
   const [homeNews, setHomeNews] = useState<IMatterDTO[]>(news);
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
 
   const limit = 3;
 
@@ -45,7 +44,6 @@ export default function Home({ news, tops, category }: any) {
             const data: IMatterDTO[] = response.data ?? [];
 
             setHomeNews((homeNewsInsideState: IMatterDTO[]) => [...homeNewsInsideState, ...data]);
-            setLoading(false);
           })
           .catch((error: any) => console.log(error));
 
@@ -68,7 +66,6 @@ export default function Home({ news, tops, category }: any) {
           const data: IMatterDTO[] = response.data ?? [];
 
           setHomeNews((homeNewsInsideState: IMatterDTO[]) => [...homeNewsInsideState, ...data]);
-          setLoading(false);
         })
         .catch((error: any) => console.log(error));
     };
@@ -78,7 +75,6 @@ export default function Home({ news, tops, category }: any) {
   }, [category, currentPage]);
 
   useEffect(() => {
-    setLoading(true);
     const intersectionObserver = new IntersectionObserver((entries: any) => {
       if (entries.some((entry: any) => entry.isIntersecting)) {
         setCurrentPage((currentPageInsideState: number) => currentPageInsideState + 1);
@@ -105,11 +101,9 @@ export default function Home({ news, tops, category }: any) {
 
           <div id="sentinela" />
 
-          <NgIf condition={loading}>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-              <Loading />
-            </div>
-          </NgIf>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+            <Loading />
+          </div>
         </div>
       </div>
     </>

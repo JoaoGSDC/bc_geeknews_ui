@@ -14,8 +14,6 @@ export default function Home({ news, tops, moreRead }: any) {
   const [homeNews, setHomeNews] = useState<any>(news);
   const [currentPage, setCurrentPage] = useState<number>(0);
 
-  const [loading, setLoading] = useState<boolean>(false);
-
   const limit = 5;
 
   useEffect(() => {
@@ -33,7 +31,6 @@ export default function Home({ news, tops, moreRead }: any) {
           }
 
           setHomeNews((homeNewsInsideState: any) => [...homeNewsInsideState, ...response.data]);
-          setLoading(false);
         })
         .catch((error: any) => console.log(error));
     };
@@ -42,7 +39,6 @@ export default function Home({ news, tops, moreRead }: any) {
   }, [currentPage]);
 
   useEffect(() => {
-    setLoading(true);
     const intersectionObserver = new IntersectionObserver((entries: any) => {
       if (entries.some((entry: any) => entry.isIntersecting)) {
         setCurrentPage((currentPageInsideState: number) => currentPageInsideState + 1);
@@ -91,11 +87,9 @@ export default function Home({ news, tops, moreRead }: any) {
 
             <div id="sentinela" />
 
-            <NgIf condition={loading}>
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-                <Loading />
-              </div>
-            </NgIf>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+              <Loading />
+            </div>
           </div>
 
           <div className={styles.container}>
