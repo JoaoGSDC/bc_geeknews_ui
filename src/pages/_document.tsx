@@ -50,6 +50,7 @@ class MyDocument extends Document {
           <meta property="og:title" content="Geek News" />
           <meta property="og:description" content="Notícias de Geek para Geek!" />
           <meta property="og:url" content="https://portalgeeknews.com.br/" />
+          <meta property="og:image" content="https://portalgeeknews.com.br/iconGKN512x512.png" />
           <meta property="og:type" content="website" />
           <meta name="google-site-verification" content="S_OKebA4xtKZP9Y6q8ug4G7JhxrrAQMecXCczfYtq6k" />
           <meta name="theme-color" content="#0f1519" />

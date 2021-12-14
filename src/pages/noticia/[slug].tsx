@@ -20,8 +20,10 @@ export default function Matter({ news, readToo, slug }: any) {
       <Head>
         <title>{title}</title>
         <meta property="og:url" content={`https://portalgeeknews.com.br/noticia/${slug}`} />
+        <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:image" content={image} />
+        <meta name="twitter:card" content="summary" />
       </Head>
 
       <div className={styles.container}>
