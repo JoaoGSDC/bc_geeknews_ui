@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 import MoreRead from '../../components/MoreRead';
 import Head from 'next/head';
 
-export default function Matter({ news, readToo }: any) {
+export default function Matter({ news, readToo, slug }: any) {
   const { title, subtitle, datepublication, image, matter, username } = news;
 
   function createMatter() {
@@ -19,6 +19,7 @@ export default function Matter({ news, readToo }: any) {
     <>
       <Head>
         <title>{title}</title>
+        <meta property="og:url" content={`https://portalgeeknews.com.br/noticia/${slug}`} />
         <meta property="og:title" content={title} />
         <meta property="og:image" content={image} />
       </Head>
@@ -97,6 +98,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         username: data.username,
       },
       readToo,
+      slug: String(params?.slug)
     },
   };
 };
