@@ -53,12 +53,12 @@ export default function Header() {
               <Link href="/categoria/LOL" passHref={true}>
                 <span>LOL</span>
               </Link>
-              <Link href="/categoria/FF" passHref={true}>
+              {/* <Link href="/categoria/FF" passHref={true}>
                 <span>Free Fire</span>
-              </Link>
-              <Link href="/categoria/VAVA" passHref={true}>
+              </Link> */}
+              {/* <Link href="/categoria/VAVA" passHref={true}>
                 <span>Valorant</span>
-              </Link>
+              </Link> */}
               <Link href="/categoria/WR" passHref={true}>
                 <span>Wild Rift</span>
               </Link>
