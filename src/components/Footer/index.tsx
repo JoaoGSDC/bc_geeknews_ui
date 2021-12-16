@@ -16,12 +16,6 @@ export default function Footer() {
           <Link href="/sobre" passHref={true}>
             <li>Sobre</li>
           </Link>
-          <Link href="/contact" passHref={true}>
-            <li>Fale conosco</li>
-          </Link>
-          <Link href="/politicas-cookies" passHref={true}>
-            <li>Políticas de Cookies</li>
-          </Link>
           <Link href="/politicas-privacidade" passHref={true}>
             <li>Política de Privacidade</li>
           </Link>

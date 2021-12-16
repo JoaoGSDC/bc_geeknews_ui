@@ -37,3 +37,20 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .container {
+    .modal {
+      flex-direction: column;
+
+      span {
+        text-align: center;
+      }
+
+      button {
+        width: 100% !important;
+        margin-top: 12px;
+      }
+    }
+  }
+}
