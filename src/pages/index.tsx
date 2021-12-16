@@ -8,7 +8,7 @@ import { api } from '../services/api';
 
 import styles from '../styles/Home.module.scss';
 import Loading from '../components/Loading';
-import NgIf from '../components/NgIf';
+import ModalCookies from '../components/ModalCookies';
 
 export default function Home({ news, tops, moreRead }: any) {
   const [homeNews, setHomeNews] = useState<any>(news);
@@ -53,6 +53,8 @@ export default function Home({ news, tops, moreRead }: any) {
 
   return (
     <>
+      <ModalCookies />
+
       <div>
         <Head>
           <title>Geek News | Portal</title>
