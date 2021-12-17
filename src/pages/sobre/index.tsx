@@ -20,6 +20,16 @@ export default function About() {
           Rift e Valorant, novidades sobre conteúdos cinematográficos como filmes e séries de universos como Marcel e
           DC.
         </p>
+
+        <p>
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/4Gx83I6YQKI"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          />
+        </p>
       </div>
     </>
   );
