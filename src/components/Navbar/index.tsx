@@ -77,6 +77,24 @@ const Navbar = ({ open, onClose }: IPropsDTO) => {
                     Nerd
                   </li>
                 </Link>
+                <Link href="/categoria/Nerd" passHref={true}>
+                  <li onClick={() => onClose(false)}>
+                    <img
+                      src="https://res.cloudinary.com/dj0vikcpc/image/upload/v1640218170/icons/icon-esports_pgbjwn.png"
+                      alt="LOL"
+                    />
+                    eSports
+                  </li>
+                </Link>
+                <Link href="/categoria/Nerd" passHref={true}>
+                  <li onClick={() => onClose(false)}>
+                    <img
+                      src="https://res.cloudinary.com/dj0vikcpc/image/upload/v1640218170/icons/icon-games_x0jwuq.png"
+                      alt="LOL"
+                    />
+                    Games
+                  </li>
+                </Link>
               </ul>
 
               {/* <Link href="/videocast">

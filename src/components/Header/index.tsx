@@ -14,6 +14,7 @@ import Navbar from '../Navbar';
 export default function Header() {
   const router = useRouter();
   const [mouseOverNoticias, setMouseOverNoticias] = useState<boolean>(false);
+  const [mouseOverCategories, setMouseOverCategories] = useState<boolean>(false);
   const [playerClick, setPlayerClick] = useState<boolean>(false);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -53,17 +54,39 @@ export default function Header() {
               <Link href="/categoria/LOL" passHref={true}>
                 <span>LOL</span>
               </Link>
-              {/* <Link href="/categoria/FF" passHref={true}>
+              <Link href="/categoria/FF" passHref={true}>
                 <span>Free Fire</span>
-              </Link> */}
-              {/* <Link href="/categoria/VAVA" passHref={true}>
+              </Link>
+              <Link href="/categoria/VAVA" passHref={true}>
                 <span>Valorant</span>
-              </Link> */}
+              </Link>
               <Link href="/categoria/WR" passHref={true}>
                 <span>Wild Rift</span>
               </Link>
               <Link href="/categoria/Nerd" passHref={true}>
                 <span>Nerd</span>
+              </Link>
+            </div>
+          </span>
+
+          <span>
+            <span
+              onClick={() => setMouseOverCategories(!mouseOverCategories)}
+              onMouseLeave={() => setMouseOverCategories(false)}
+            >
+              Categorias
+            </span>
+            <div
+              className={styles.optionsContainer}
+              style={{ display: mouseOverCategories ? 'flex' : 'none' }}
+              onClick={() => setMouseOverCategories(false)}
+              onMouseOver={() => setMouseOverCategories(true)}
+            >
+              <Link href="/categoria/LOL" passHref={true}>
+                <span>eSports</span>
+              </Link>
+              <Link href="/categoria/WR" passHref={true}>
+                <span>Games</span>
               </Link>
             </div>
           </span>
